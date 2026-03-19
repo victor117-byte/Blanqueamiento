@@ -92,7 +92,7 @@ const ContactSection = () => {
           >
             <iframe
               title="Ubicación Dental Center"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.1!2d-99.17!3d19.39!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff0!2sWorld+Trade+Center+Ciudad+de+M%C3%A9xico!5e0!3m2!1ses!2smx!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.0130464498!2d-99.17861122524418!3d19.393780981883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff15f8e4b5e7%3A0x785beb3507789d0!2sWorld%20Trade%20Center%20Ciudad%20de%20M%C3%A9xico!5e0!3m2!1ses!2smx!4v1"
               className="h-full w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
