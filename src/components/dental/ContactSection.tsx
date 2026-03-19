@@ -53,7 +53,7 @@ const ContactSection = () => {
               {
                 icon: Clock,
                 title: "Horario",
-                detail: "Lunes a Sábado · 9:00 - 19:00",
+                detail: "L-V: 10am-8pm · Sáb: 10am-3pm · Dom: previa cita",
                 href: undefined,
               },
             ].map(({ icon: Icon, title, detail, href }) => (
