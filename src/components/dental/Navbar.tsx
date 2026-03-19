@@ -38,8 +38,8 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <Phone className="h-4 w-4 text-primary" />
-          <a href="tel:5574441235" className="text-sm font-semibold text-foreground">
-            55 7444 1235
+          <a href="tel:525530460680" className="text-sm font-semibold text-foreground hover:text-primary transition-colors">
+            55 3046 0680
           </a>
           <a
             href="#contacto"
@@ -82,10 +82,10 @@ const Navbar = () => {
               ))}
               <li>
                 <a
-                  href="tel:5574441235"
+                  href="tel:525530460680"
                   className="flex items-center gap-2 text-sm font-semibold text-primary"
                 >
-                  <Phone className="h-4 w-4" /> 55 7444 1235
+                  <Phone className="h-4 w-4" /> 55 3046 0680
                 </a>
               </li>
             </ul>
