@@ -35,8 +35,8 @@ const ContactSection = () => {
               {
                 icon: Phone,
                 title: "Teléfono",
-                detail: "55 7444 1235",
-                href: "tel:5574441235",
+                detail: "55 3046 0680",
+                href: "tel:55530460680",
               },
               {
                 icon: MessageCircle,
