@@ -6,6 +6,7 @@ import FAQSection from "@/components/dental/FAQSection";
 import GallerySection from "@/components/dental/GallerySection";
 import ContactSection from "@/components/dental/ContactSection";
 import Footer from "@/components/dental/Footer";
+import WhatsAppButton from "@/components/dental/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <GallerySection />
       <ContactSection />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
