@@ -35,14 +35,14 @@ const ContactSection = () => {
               {
                 icon: Phone,
                 title: "Teléfono",
-                detail: "55 7444 1235",
-                href: "tel:5574441235",
+                detail: "55 3046 0680",
+                href: "tel:55530460680",
               },
               {
                 icon: MessageCircle,
                 title: "WhatsApp",
                 detail: "Envíanos un mensaje",
-                href: "https://wa.me/525574441235",
+                href: "https://wa.me/525530460680?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita",
               },
               {
                 icon: MapPin,
