@@ -42,7 +42,7 @@ const ContactSection = () => {
                 icon: MessageCircle,
                 title: "WhatsApp",
                 detail: "Envíanos un mensaje",
-                href: "https://wa.me/525574441235",
+                href: "https://wa.me/525530460680?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita",
               },
               {
                 icon: MapPin,
