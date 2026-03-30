@@ -1,25 +1,32 @@
 import { MessageCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const WHATSAPP_URL = "https://wa.me/525530460680?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
 
 const WhatsAppButton = () => {
   return (
-    <motion.a
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Agendar cita por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-white shadow-lg hover:bg-[#1ebe57] transition-colors"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <MessageCircle className="h-6 w-6 fill-white" />
-      <span className="text-sm font-semibold hidden sm:inline">Agendar cita</span>
-    </motion.a>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+      {/* Ping rings */}
+      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping-slow_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-60" />
+      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping-slow_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-30" style={{ animationDelay: "0.5s" }} />
+
+      <motion.a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Agendar cita por WhatsApp"
+        id="whatsapp-float-btn"
+        className="relative flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-[0_8px_32px_hsl(145_63%_42%/0.45)] hover:bg-[#1ebe57] hover:shadow-[0_8px_40px_hsl(145_63%_42%/0.55)] transition-all duration-300"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1.2, type: "spring", stiffness: 220, damping: 18 }}
+        whileHover={{ scale: 1.07 }}
+        whileTap={{ scale: 0.93 }}
+      >
+        <MessageCircle className="h-5 w-5 fill-white flex-shrink-0" />
+        <span className="text-sm font-bold hidden sm:inline">Agendar cita</span>
+      </motion.a>
+    </div>
   );
 };
 
