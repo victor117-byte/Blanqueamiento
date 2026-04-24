@@ -69,10 +69,10 @@ const Navbar = () => {
               ))}
             </div>
             <a
-              href="tel:525530460680"
+              href="tel:525574441235"
               className={`text-sm font-semibold transition-colors duration-300 ${scrolled ? "hover:text-navy" : "hover:text-white"}`}
             >
-              55 3046 0680
+              55 7444 1235
             </a>
           </div>
           <a
@@ -120,10 +120,10 @@ const Navbar = () => {
               ))}
               <li className="pt-3 mt-2 border-t border-border">
                 <a
-                  href="tel:525530460680"
+                  href="tel:525574441235"
                   className="flex items-center gap-2 text-sm font-semibold text-navy px-3 py-2"
                 >
-                  <Phone className="h-4 w-4" /> 55 3046 0680
+                  <Phone className="h-4 w-4" /> 55 7444 1235
                 </a>
               </li>
               <li>

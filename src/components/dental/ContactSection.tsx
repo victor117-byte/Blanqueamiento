@@ -3,15 +3,15 @@ import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, Star } from "lucide-react";
 
 const WHATSAPP_URL =
-  "https://wa.me/525530460680?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
+  "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
 
 const contactItems = [
   {
     icon: Phone,
     title: "Teléfono",
-    detail: "55 3046 0680",
+    detail: "55 7444 1235",
     sub: "Llámanos directamente",
-    href: "tel:525530460680",
+    href: "tel:525574441235",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },

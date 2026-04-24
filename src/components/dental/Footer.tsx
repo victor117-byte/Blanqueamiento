@@ -61,7 +61,7 @@ const Footer = () => {
                 <Facebook className="h-4 w-4" />
               </a>
               <a
-                href="https://wa.me/525530460680"
+                href="https://wa.me/525574441235"
                 aria-label="WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -96,14 +96,14 @@ const Footer = () => {
             <div className="space-y-3.5 text-sm text-white/50">
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-gold/60" />
-                <a href="tel:525530460680" className="hover:text-white transition-colors duration-200">
-                  55 3046 0680
+                <a href="tel:525574441235" className="hover:text-white transition-colors duration-200">
+                  55 7444 1235
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <MessageCircle className="h-4 w-4 shrink-0 text-gold/60" />
                 <a
-                  href="https://wa.me/525530460680?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita"
+                  href="https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-200"
