@@ -1,24 +1,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import patient2 from "@/assets/Pas1-sonriendo.jpeg";
-import patient4 from "@/assets/Pas1-Before and after.jpeg";
-
-// Unsplash URLs verificadas
-const UNSPLASH = {
-  clinicModern: "https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=800&q=85&fit=crop",
-  smileWoman: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=85&fit=crop&crop=face",
-  smileMan: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=800&q=85&fit=crop&crop=face",
-  dentalTeam: "https://images.unsplash.com/photo-1588776814546-1ffbb16f94aa?w=800&q=85&fit=crop",
-  smileClose: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=800&q=85&fit=crop",
-};
+import clinicInterior from "@/assets/clinic-interior.jpg";
+import smileCloseup from "@/assets/smile-closeup.jpg";
+import patientSmile1 from "@/assets/patient-smile-1.jpg";
+import patientSmile2 from "@/assets/patient-smile-2.jpg";
+import dentistPatient from "@/assets/dentist-patient.jpg";
+import heroSmile from "@/assets/hero-smile.jpg";
 
 const images = [
-  { src: patient4, alt: "Antes y después — Blanqueamiento Dental", label: "Antes & Después", span: "col-span-2 row-span-2" },
-  { src: UNSPLASH.smileWoman, alt: "Paciente sonriendo con dientes blancos", label: "Resultado brillante" },
-  { src: patient2, alt: "Paciente con sonrisa radiante", label: "Sonrisa transformada" },
-  { src: UNSPLASH.clinicModern, alt: "Consultorio dental moderno", label: "Nuestras instalaciones" },
-  { src: UNSPLASH.smileMan, alt: "Paciente masculino satisfecho", label: "Paciente satisfecho" },
-  { src: UNSPLASH.dentalTeam, alt: "Equipo dental profesional", label: "Nuestro equipo" },
+  { src: clinicInterior, alt: "Consultorio dental moderno y elegante", label: "Nuestras instalaciones", span: "col-span-2 row-span-2" },
+  { src: smileCloseup, alt: "Sonrisa con dientes blancos perfectos", label: "Resultado brillante" },
+  { src: heroSmile, alt: "Paciente sonriendo con sonrisa radiante", label: "Sonrisa transformada" },
+  { src: patientSmile1, alt: "Sonrisa después de blanqueamiento", label: "Antes & Después" },
+  { src: patientSmile2, alt: "Paciente masculino satisfecho", label: "Paciente satisfecho" },
+  { src: dentistPatient, alt: "Equipo dental profesional con paciente", label: "Atención personalizada" },
 ];
 
 const GallerySection = () => {

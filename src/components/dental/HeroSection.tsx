@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, Award, Users, ThumbsUp, ArrowDown } from "lucide-react";
-import heroImage from "@/assets/Pas1-fotografia profesional.jpeg";
+import heroImage from "@/assets/hero-smile.jpg";
 
 const stats = [
   { icon: Award, value: "20+", label: "Años de exp." },
