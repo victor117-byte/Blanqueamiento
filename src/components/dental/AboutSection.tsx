@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, Shield, Heart, CheckCircle2 } from "lucide-react";
-import smileImage from "@/assets/Pas1-sonriendo.jpeg";
+import smileImage from "@/assets/dentist-patient.jpg";
 
 const stats = [
   { icon: Award, value: "20+", label: "Años de experiencia" },
