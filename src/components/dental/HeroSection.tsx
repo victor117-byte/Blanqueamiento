@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, Award, Users, ThumbsUp, ArrowDown } from "lucide-react";
 import heroImage from "@/assets/hero-smile.jpg";
+import { trackEvent } from "@/lib/analytics";
 
 const stats = [
   { icon: Award, value: "20+", label: "Años de exp." },
@@ -109,6 +110,7 @@ const HeroSection = () => {
             <a
               href="#contacto"
               id="hero-cta-primary"
+              onClick={() => trackEvent("cta_agendar_click", { location: "hero" })}
               className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
             >
               Agendar Cita Ahora

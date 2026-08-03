@@ -7,6 +7,7 @@ import {
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { HelpCircle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -114,6 +115,7 @@ const FAQSection = () => {
           <a
             href="#contacto"
             id="faq-cta"
+            onClick={() => trackEvent("cta_agendar_click", { location: "faq_cta" })}
             className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-7 py-3.5 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 transition-all duration-300"
           >
             Hablar con un especialista

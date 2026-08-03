@@ -1,4 +1,6 @@
 import { Phone, MapPin, MessageCircle, Instagram, Facebook, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 const Footer = () => {
   return (
@@ -65,6 +67,7 @@ const Footer = () => {
                 aria-label="WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("whatsapp_click", { location: "footer_social" })}
                 className="w-9 h-9 rounded-xl border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-[#25D366]/40 hover:bg-[#25D366]/10 transition-all duration-300"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -96,7 +99,11 @@ const Footer = () => {
             <div className="space-y-3.5 text-sm text-white/50">
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-gold/60" />
-                <a href="tel:525574441235" className="hover:text-white transition-colors duration-200">
+                <a
+                  href="tel:525574441235"
+                  onClick={() => trackEvent("phone_click", { location: "footer_contact" })}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   55 7444 1235
                 </a>
               </div>
@@ -106,6 +113,7 @@ const Footer = () => {
                   href="https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { location: "footer_contact" })}
                   className="hover:text-white transition-colors duration-200"
                 >
                   WhatsApp
@@ -139,13 +147,13 @@ const Footer = () => {
             © {new Date().getFullYear()} Blanqueamiento Dental Center. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+            <Link to="/privacidad" className="text-xs text-white/30 hover:text-white/60 transition-colors">
               Política de privacidad
-            </a>
+            </Link>
             <span className="text-white/15">·</span>
-            <a href="#" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+            <Link to="/aviso-legal" className="text-xs text-white/30 hover:text-white/60 transition-colors">
               Aviso legal
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, Star } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const WHATSAPP_URL =
   "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
@@ -150,6 +151,10 @@ const ContactSection = () => {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      onClick={() => {
+                        if (href.startsWith("tel:")) trackEvent("phone_click", { location: "contact_card" });
+                        if (href.startsWith("https://wa.me")) trackEvent("whatsapp_click", { location: "contact_card" });
+                      }}
                       className="block"
                       aria-label={title}
                     >
@@ -168,6 +173,10 @@ const ContactSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="contact-whatsapp-cta"
+              onClick={() => {
+                trackEvent("whatsapp_click", { location: "contact_main_cta" });
+                trackEvent("cta_agendar_click", { location: "contact_main_cta" });
+              }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.75 }}

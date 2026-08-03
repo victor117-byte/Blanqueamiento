@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
 import logoImg from "@/assets/Logo.jpeg";
+import { trackEvent } from "@/lib/analytics";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -70,6 +71,7 @@ const Navbar = () => {
             </div>
             <a
               href="tel:525574441235"
+              onClick={() => trackEvent("phone_click", { location: "navbar_desktop" })}
               className={`text-sm font-semibold transition-colors duration-300 ${scrolled ? "hover:text-navy" : "hover:text-white"}`}
             >
               55 7444 1235
@@ -77,6 +79,7 @@ const Navbar = () => {
           </div>
           <a
             href="#contacto"
+            onClick={() => trackEvent("cta_agendar_click", { location: "navbar_desktop" })}
             className="ml-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-2.5 text-sm font-bold text-white hover:shadow-gold hover:scale-105 active:scale-95 transition-all duration-200"
           >
             Reservar Cita
@@ -121,6 +124,7 @@ const Navbar = () => {
               <li className="pt-3 mt-2 border-t border-border">
                 <a
                   href="tel:525574441235"
+                  onClick={() => trackEvent("phone_click", { location: "navbar_mobile" })}
                   className="flex items-center gap-2 text-sm font-semibold text-navy px-3 py-2"
                 >
                   <Phone className="h-4 w-4" /> 55 7444 1235
@@ -129,7 +133,10 @@ const Navbar = () => {
               <li>
                 <a
                   href="#contacto"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    trackEvent("cta_agendar_click", { location: "navbar_mobile" });
+                  }}
                   className="flex items-center justify-center mt-1 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-3 text-sm font-bold text-white"
                 >
                   Reservar Cita
