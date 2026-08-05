@@ -35,17 +35,26 @@ const AboutSection = () => {
             <div className="absolute -top-8 -left-8 w-64 h-64 rounded-3xl bg-gradient-to-br from-gold/10 to-primary/5 -z-10" />
             <div className="absolute -bottom-8 -right-8 w-48 h-48 rounded-full bg-gradient-to-br from-primary/10 to-gold/5 -z-10" />
 
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
               <img
                 src={smileImage}
                 alt="Antes y después de blanqueamiento dental — resultado real de paciente"
-                className="h-full w-full object-cover object-bottom hover:scale-105 transition-transform duration-700"
+                className="h-full w-full object-cover object-center hover:scale-105 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
               />
+              {/* Etiqueta antes/después: la única superpuesta a la foto, con contraste garantizado */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="absolute bottom-4 left-4 rounded-full bg-navy-dark/80 backdrop-blur-sm px-4 py-1.5"
+              >
+                <span className="text-xs font-semibold text-white uppercase tracking-wider">Antes · Después real</span>
+              </motion.div>
             </div>
 
-            {/* Floating card — años */}
+            {/* Card — años de experiencia */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -59,18 +68,6 @@ const AboutSection = () => {
                   <div key={i} className="h-1 w-4 rounded-full bg-gold/60" />
                 ))}
               </div>
-            </motion.div>
-
-            {/* Floating card — ubicación */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="absolute -top-4 -right-4 md:-right-6 rounded-2xl glass border border-white/40 p-4 shadow-card"
-            >
-              <p className="text-xs font-semibold text-navy uppercase tracking-wider">Ubicación</p>
-              <p className="text-sm font-bold text-foreground mt-0.5">World Trade Center</p>
-              <p className="text-xs text-muted-foreground">Nápoles, CDMX</p>
             </motion.div>
           </motion.div>
 
