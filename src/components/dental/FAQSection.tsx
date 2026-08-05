@@ -59,7 +59,7 @@ const FAQSection = () => {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             ¿Tienes{" "}
             <span className="italic" style={{
-              background: "linear-gradient(135deg, hsl(215 65% 22%), hsl(215 55% 35%))",
+              background: "linear-gradient(135deg, hsl(228 61% 23%), hsl(228 50% 37%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

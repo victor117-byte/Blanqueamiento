@@ -1,6 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Star, Award, Users, ThumbsUp, ArrowDown } from "lucide-react";
-import heroImage from "@/assets/hero-smile.jpg";
+import paciente5 from "@/assets/paciente-5-sonrisa.jpeg";
+import paciente1 from "@/assets/paciente-1-sonrisa.jpeg";
+import paciente3 from "@/assets/paciente-3-sonrisa.jpeg";
+import paciente6 from "@/assets/paciente-6-sonrisa.jpeg";
+import paciente4 from "@/assets/paciente-4-sonrisa.jpeg";
 import { trackEvent } from "@/lib/analytics";
 
 const stats = [
@@ -10,16 +15,42 @@ const stats = [
   { icon: ThumbsUp, value: "100%", label: "Satisfacción" },
 ];
 
+const heroImages = [paciente5, paciente1, paciente3, paciente6, paciente4];
+const HERO_ROTATE_MS = 5000;
+
 const HeroSection = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % heroImages.length);
+    }, HERO_ROTATE_MS);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="inicio" className="relative min-h-screen flex flex-col items-center overflow-hidden">
-      {/* Background image */}
+      {/* Background image: rotación de pacientes reales */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Paciente sonriendo en Dental Center"
-          className="h-full w-full object-cover object-top"
-        />
+        <AnimatePresence>
+          <motion.img
+            key={current}
+            src={heroImages[current]}
+            alt="Paciente real de Blanqueamiento Dental Center sonriendo tras su tratamiento"
+            className="absolute inset-0 h-full w-full object-cover object-top"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, scale: 1.08 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1.2, ease: "easeInOut" },
+              scale: { duration: HERO_ROTATE_MS / 1000, ease: "linear" },
+            }}
+            {...(current === 0
+              ? { fetchPriority: "high" as const, loading: "eager" as const }
+              : { loading: "lazy" as const })}
+            decoding="async"
+          />
+        </AnimatePresence>
         {/* Multi-layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/92 via-navy/75 to-navy/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/60 via-transparent to-transparent" />
@@ -80,7 +111,7 @@ const HeroSection = () => {
             <span
               className="italic"
               style={{
-                background: "linear-gradient(135deg, hsl(43 85% 65%), hsl(36 90% 70%))",
+                background: "linear-gradient(135deg, hsl(199 88% 68%), hsl(210 85% 78%))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

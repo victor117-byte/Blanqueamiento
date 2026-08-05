@@ -6,7 +6,10 @@ const WHATSAPP_URL = "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%A
 
 const WhatsAppButton = () => {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div
+      className="fixed right-6 z-50 flex flex-col items-end gap-2"
+      style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))" }}
+    >
       {/* Ping rings */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping-slow_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-60" />
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping-slow_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-30" style={{ animationDelay: "0.5s" }} />

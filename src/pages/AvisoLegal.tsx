@@ -19,9 +19,10 @@ const AvisoLegal = () => {
               1. Identificación
             </h2>
             <p>
-              Este sitio web es operado por Blanqueamiento Dental Center, con domicilio en World
-              Trade Center, Ciudad de México. Puedes contactarnos a través del teléfono o
-              WhatsApp indicados en la sección de contacto.
+              Este sitio web es operado por Blanqueamiento Dental Center, con domicilio en
+              Montecito 38, World Trade Center, colonia Nápoles, Benito Juárez, 03810, Ciudad de
+              México. Puedes contactarnos a través del teléfono o WhatsApp indicados en la sección
+              de contacto.
             </p>
           </section>
 

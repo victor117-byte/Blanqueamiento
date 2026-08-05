@@ -1,19 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import clinicInterior from "@/assets/clinic-interior.jpg";
-import smileCloseup from "@/assets/smile-closeup.jpg";
-import patientSmile1 from "@/assets/patient-smile-1.jpg";
-import patientSmile2 from "@/assets/patient-smile-2.jpg";
-import dentistPatient from "@/assets/dentist-patient.jpg";
-import heroSmile from "@/assets/hero-smile.jpg";
+import equipoTecnologia from "@/assets/equipo-tecnologia.jpeg";
+import limpiezaUltrasonido from "@/assets/limpieza-ultrasonido.jpeg";
+import paciente1Dientes from "@/assets/paciente-1-dientes.jpeg";
+import paciente2Dientes from "@/assets/paciente-2-dientes.jpeg";
+import videoAntesDespues from "@/assets/video-antes-despues.mp4";
+import videoPoster from "@/assets/video-antes-despues-poster.jpg";
 
 const images = [
-  { src: clinicInterior, alt: "Consultorio dental moderno y elegante", label: "Nuestras instalaciones", span: "col-span-2 row-span-2" },
-  { src: smileCloseup, alt: "Sonrisa con dientes blancos perfectos", label: "Resultado brillante" },
-  { src: heroSmile, alt: "Paciente sonriendo con sonrisa radiante", label: "Sonrisa transformada" },
-  { src: patientSmile1, alt: "Sonrisa después de blanqueamiento", label: "Antes & Después" },
-  { src: patientSmile2, alt: "Paciente masculino satisfecho", label: "Paciente satisfecho" },
-  { src: dentistPatient, alt: "Equipo dental profesional con paciente", label: "Atención personalizada" },
+  { src: equipoTecnologia, alt: "Instrumental de ultrasonido de última generación", label: "Tecnología de vanguardia" },
+  { src: limpiezaUltrasonido, alt: "Antes y después de limpieza dental con ultrasonido", label: "Limpieza profesional" },
+  { src: paciente1Dientes, alt: "Antes y después de blanqueamiento dental — paciente real", label: "Resultado real" },
+  { src: paciente2Dientes, alt: "Antes y después de blanqueamiento dental — paciente real", label: "Sonrisa renovada" },
 ];
 
 const GallerySection = () => {
@@ -38,7 +36,7 @@ const GallerySection = () => {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5">
             Nuestro{" "}
             <span className="italic" style={{
-              background: "linear-gradient(135deg, hsl(215 65% 22%), hsl(215 55% 35%))",
+              background: "linear-gradient(135deg, hsl(228 61% 23%), hsl(228 50% 37%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -55,20 +53,56 @@ const GallerySection = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[160px] md:auto-rows-[200px]"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[160px] md:auto-rows-[220px]"
         >
+          {/* Video: transformación real, tile destacado */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="col-span-2 relative group rounded-2xl overflow-hidden shadow-card ring-1 ring-border/50"
+          >
+            {isInView ? (
+              <video
+                src={videoAntesDespues}
+                poster={videoPoster}
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Video de transformación real: antes y después de blanqueamiento dental"
+              />
+            ) : (
+              <img
+                src={videoPoster}
+                alt="Video de transformación real: antes y después de blanqueamiento dental"
+                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-navy-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+              <span className="text-white text-sm font-semibold">Transformación real en video</span>
+            </div>
+          </motion.div>
+
           {images.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-              className={`${img.span ?? ""} relative group rounded-2xl overflow-hidden shadow-card ring-1 ring-border/50`}
+              transition={{ duration: 0.5, delay: 0.1 * (i + 1) }}
+              className="relative group rounded-2xl overflow-hidden shadow-card ring-1 ring-border/50"
             >
               <img
                 src={img.src}
                 alt={img.alt}
                 className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-600"
+                loading="lazy"
+                decoding="async"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-navy-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-[hsl(215_55%_18%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-[hsl(228_55%_19%)]" />
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
@@ -25,7 +25,7 @@ const Footer = () => {
               <span
                 className="font-display text-2xl font-light"
                 style={{
-                  background: "linear-gradient(135deg, hsl(43 85% 65%), hsl(36 90% 70%))",
+                  background: "linear-gradient(135deg, hsl(199 88% 68%), hsl(210 85% 78%))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -49,14 +49,18 @@ const Footer = () => {
             {/* Social */}
             <div className="flex items-center gap-3 mt-6">
               <a
-                href="#"
+                href="https://www.instagram.com/blanqueamientodentalcenter/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="w-9 h-9 rounded-xl border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-gold/40 hover:bg-gold/10 transition-all duration-300"
               >
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/BlanqueamientoDentalconLaser"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="w-9 h-9 rounded-xl border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-gold/40 hover:bg-gold/10 transition-all duration-300"
               >
@@ -127,7 +131,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-200 leading-relaxed"
                 >
-                  World Trade Center,<br />Ciudad de México
+                  World Trade Center<br />Montecito 38, Nápoles, CDMX
                 </a>
               </div>
               <div className="pt-1">

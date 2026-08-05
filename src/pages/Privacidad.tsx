@@ -19,8 +19,9 @@ const Privacidad = () => {
               1. Responsable
             </h2>
             <p>
-              Blanqueamiento Dental Center ("nosotros"), con domicilio en World Trade Center,
-              Ciudad de México, es responsable del tratamiento de los datos personales que nos
+              Blanqueamiento Dental Center ("nosotros"), con domicilio en Montecito 38, World Trade
+              Center, colonia Nápoles, Benito Juárez, 03810, Ciudad de México, es responsable del
+              tratamiento de los datos personales que nos
               proporciones, conforme a la Ley Federal de Protección de Datos Personales en
               Posesión de los Particulares (LFPDPPP).
             </p>

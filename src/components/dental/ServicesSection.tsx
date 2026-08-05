@@ -90,7 +90,7 @@ const ServicesSection = () => {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5">
             Cuidado dental{" "}
             <span className="italic" style={{
-              background: "linear-gradient(135deg, hsl(43 85% 65%), hsl(36 90% 70%))",
+              background: "linear-gradient(135deg, hsl(199 88% 68%), hsl(210 85% 78%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

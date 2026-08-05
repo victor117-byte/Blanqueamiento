@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.blanqueamientodental.com.mx/sitemap.xml
+Sitemap: https://www.blanqueamiento.com.mx/sitemap.xml

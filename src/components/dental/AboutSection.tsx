@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, Shield, Heart, CheckCircle2 } from "lucide-react";
-import smileImage from "@/assets/dentist-patient.jpg";
+import smileImage from "@/assets/cambio-sonrisa.jpeg";
 
 const stats = [
   { icon: Award, value: "20+", label: "Años de experiencia" },
@@ -38,8 +38,10 @@ const AboutSection = () => {
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
               <img
                 src={smileImage}
-                alt="Paciente con sonrisa radiante — Dental Center"
-                className="h-full w-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                alt="Antes y después de blanqueamiento dental — resultado real de paciente"
+                className="h-full w-full object-cover object-bottom hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -68,7 +70,7 @@ const AboutSection = () => {
             >
               <p className="text-xs font-semibold text-navy uppercase tracking-wider">Ubicación</p>
               <p className="text-sm font-bold text-foreground mt-0.5">World Trade Center</p>
-              <p className="text-xs text-muted-foreground">CDMX</p>
+              <p className="text-xs text-muted-foreground">Nápoles, CDMX</p>
             </motion.div>
           </motion.div>
 
@@ -84,7 +86,7 @@ const AboutSection = () => {
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
               Tu sonrisa merece lo{" "}
               <span className="italic" style={{
-                background: "linear-gradient(135deg, hsl(215 65% 22%), hsl(215 55% 35%))",
+                background: "linear-gradient(135deg, hsl(228 61% 23%), hsl(228 50% 37%))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -99,9 +101,9 @@ const AboutSection = () => {
               una sonrisa radiante que transforme tu confianza.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8 text-base">
-              Ubicados en el <strong className="text-foreground">World Trade Center CDMX</strong>, contamos
-              con instalaciones equipadas con tecnología de vanguardia, en un ambiente acogedor
-              donde tu comodidad es nuestra prioridad.
+              Ubicados en el <strong className="text-foreground">World Trade Center</strong>, Montecito 38,
+              colonia Nápoles, contamos con instalaciones equipadas con tecnología de vanguardia,
+              en un ambiente acogedor donde tu comodidad es nuestra prioridad.
             </p>
 
             {/* Highlights */}

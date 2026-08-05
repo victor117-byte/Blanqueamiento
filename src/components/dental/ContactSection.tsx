@@ -30,7 +30,7 @@ const contactItems = [
     icon: MapPin,
     title: "Ubicación",
     detail: "World Trade Center",
-    sub: "Ciudad de México",
+    sub: "Montecito 38, Nápoles, CDMX",
     href: "https://maps.google.com/?q=BLANQUEAMIENTO+DENTAL+CENTER+CDMX",
     color: "text-rose-500",
     bg: "bg-rose-500/10",
@@ -69,7 +69,7 @@ const ContactSection = () => {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5">
             Agenda tu{" "}
             <span className="italic" style={{
-              background: "linear-gradient(135deg, hsl(215 65% 22%), hsl(215 55% 35%))",
+              background: "linear-gradient(135deg, hsl(228 61% 23%), hsl(228 50% 37%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -208,7 +208,7 @@ const ContactSection = () => {
               <MapPin className="h-4 w-4 text-primary shrink-0" />
               <div>
                 <p className="text-sm font-semibold text-foreground">Blanqueamiento Dental Center</p>
-                <p className="text-xs text-muted-foreground">World Trade Center, Ciudad de México</p>
+                <p className="text-xs text-muted-foreground">Montecito 38, Nápoles, CDMX 03810</p>
               </div>
               <a
                 href="https://maps.google.com/?q=BLANQUEAMIENTO+DENTAL+CENTER+CDMX"
