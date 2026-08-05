@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Star, Award, Users, ThumbsUp, ArrowDown } from "lucide-react";
+import { Star, Award, Users, ThumbsUp, ArrowDown, BadgeCheck } from "lucide-react";
 import paciente5 from "@/assets/paciente-5-sonrisa.jpeg";
 import paciente1 from "@/assets/paciente-1-sonrisa.jpeg";
 import paciente3 from "@/assets/paciente-3-sonrisa.jpeg";
@@ -29,33 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex flex-col items-center overflow-hidden">
-      {/* Background image: rotación de pacientes reales */}
-      <div className="absolute inset-0">
-        <AnimatePresence>
-          <motion.img
-            key={current}
-            src={heroImages[current]}
-            alt="Paciente real de Blanqueamiento Dental Center sonriendo tras su tratamiento"
-            className="absolute inset-0 h-full w-full object-cover object-top"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, scale: 1.08 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 1.2, ease: "easeInOut" },
-              scale: { duration: HERO_ROTATE_MS / 1000, ease: "linear" },
-            }}
-            {...(current === 0
-              ? { fetchPriority: "high" as const, loading: "eager" as const }
-              : { loading: "lazy" as const })}
-            decoding="async"
-          />
-        </AnimatePresence>
-        {/* Multi-layer overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/92 via-navy/75 to-navy/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/60 via-transparent to-transparent" />
-      </div>
-
+    <section id="inicio" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
       {/* Decorative elements */}
       <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 left-1/3 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
@@ -64,7 +38,7 @@ const HeroSection = () => {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1.5 h-1.5 rounded-full bg-gold/40"
+          className="absolute w-1.5 h-1.5 rounded-full bg-gold/40 pointer-events-none"
           style={{
             left: `${15 + i * 10}%`,
             top: `${20 + (i % 4) * 15}%`,
@@ -82,77 +56,125 @@ const HeroSection = () => {
       ))}
 
       {/* Main content */}
-      <div className="container relative z-10 mx-auto flex-1 flex flex-col justify-center py-32 pt-40">
-        <div className="max-w-2xl">
-          {/* Badge */}
+      <div className="container relative z-10 mx-auto pt-32 pb-16 md:pt-40 md:pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Text column */}
+          <div>
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-sm px-4 py-1.5 mb-6"
+            >
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 fill-gold text-gold" />
+                ))}
+              </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-gold">
+                #1 Blanqueamiento Dental CDMX
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="font-display text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] text-white mb-6"
+            >
+              Devuélvele el{" "}
+              <span
+                className="italic"
+                style={{
+                  background: "linear-gradient(135deg, hsl(199 88% 68%), hsl(210 85% 78%))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                brillo
+              </span>{" "}
+              a tu sonrisa
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="text-lg text-white/75 mb-10 max-w-lg font-light leading-relaxed"
+            >
+              Más de 20 años de experiencia en odontología estética en la Ciudad de México.
+              Tecnología de vanguardia y atención 100% personalizada para ti.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a
+                href="#contacto"
+                id="hero-cta-primary"
+                onClick={() => trackEvent("cta_agendar_click", { location: "hero" })}
+                className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
+              >
+                Agendar Cita Ahora
+              </a>
+              <a
+                href="#servicios"
+                id="hero-cta-secondary"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/25 bg-white/8 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-white hover:bg-white/15 hover:border-white/40 transition-all duration-300"
+              >
+                Ver Servicios
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Image column: paciente real, en tarjeta enmarcada */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-sm px-4 py-1.5 mb-6"
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-3 w-3 fill-gold text-gold" />
-              ))}
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-white/15">
+              <AnimatePresence>
+                <motion.img
+                  key={current}
+                  src={heroImages[current]}
+                  alt="Paciente real de Blanqueamiento Dental Center sonriendo tras su tratamiento"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, scale: 1.04 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    opacity: { duration: 1.2, ease: "easeInOut" },
+                    scale: { duration: HERO_ROTATE_MS / 1000, ease: "linear" },
+                  }}
+                  {...(current === 0
+                    ? { fetchPriority: "high" as const, loading: "eager" as const }
+                    : { loading: "lazy" as const })}
+                  decoding="async"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/50 via-transparent to-transparent" />
             </div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-gold">
-              #1 Blanqueamiento Dental CDMX
-            </span>
-          </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] text-white mb-6"
-          >
-            Devuélvele el{" "}
-            <span
-              className="italic"
-              style={{
-                background: "linear-gradient(135deg, hsl(199 88% 68%), hsl(210 85% 78%))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+            {/* Floating badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="absolute -bottom-5 -left-4 md:-left-8 flex items-center gap-2.5 rounded-2xl glass border border-white/40 px-4 py-3 shadow-card"
             >
-              brillo
-            </span>{" "}
-            a tu sonrisa
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="text-lg text-white/75 mb-10 max-w-lg font-light leading-relaxed"
-          >
-            Más de 20 años de experiencia en odontología estética en la Ciudad de México.
-            Tecnología de vanguardia y atención 100% personalizada para ti.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <a
-              href="#contacto"
-              id="hero-cta-primary"
-              onClick={() => trackEvent("cta_agendar_click", { location: "hero" })}
-              className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
-            >
-              Agendar Cita Ahora
-            </a>
-            <a
-              href="#servicios"
-              id="hero-cta-secondary"
-              className="inline-flex items-center justify-center rounded-2xl border border-white/25 bg-white/8 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-white hover:bg-white/15 hover:border-white/40 transition-all duration-300"
-            >
-              Ver Servicios
-            </a>
+              <BadgeCheck className="h-5 w-5 text-gold shrink-0" />
+              <div>
+                <p className="text-sm font-bold text-foreground leading-tight">Paciente real</p>
+                <p className="text-xs text-muted-foreground leading-tight">Resultado verificado</p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -162,7 +184,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.9 }}
-        className="relative z-10 w-full glass-dark"
+        className="relative z-10 w-full glass-dark mt-4"
       >
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
@@ -186,7 +208,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
+        className="relative z-10 hidden md:flex flex-col items-center gap-2 py-6"
       >
         <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
         <motion.div
