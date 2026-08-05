@@ -35,11 +35,11 @@ const AboutSection = () => {
             <div className="absolute -top-8 -left-8 w-64 h-64 rounded-3xl bg-gradient-to-br from-gold/10 to-primary/5 -z-10" />
             <div className="absolute -bottom-8 -right-8 w-48 h-48 rounded-full bg-gradient-to-br from-primary/10 to-gold/5 -z-10" />
 
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50 bg-white">
               <img
                 src={smileImage}
                 alt="Antes y después de blanqueamiento dental — resultado real de paciente"
-                className="h-full w-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                className="h-full w-full object-contain hover:scale-105 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
               />
