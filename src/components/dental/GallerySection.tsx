@@ -1,11 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import equipoTecnologia from "@/assets/equipo-tecnologia.jpeg";
-import limpiezaUltrasonido from "@/assets/limpieza-ultrasonido.jpeg";
-import paciente1Dientes from "@/assets/paciente-1-dientes.jpeg";
-import paciente2Dientes from "@/assets/paciente-2-dientes.jpeg";
+import equipoTecnologia from "@/assets/equipo-tecnologia.webp";
+import limpiezaUltrasonido from "@/assets/limpieza-ultrasonido.webp";
+import paciente1Dientes from "@/assets/paciente-1-dientes.webp";
+import paciente2Dientes from "@/assets/paciente-2-dientes.webp";
 import videoAntesDespues from "@/assets/video-antes-despues.mp4";
-import videoPoster from "@/assets/video-antes-despues-poster.jpg";
+import videoPoster from "@/assets/video-antes-despues-poster.webp";
 
 const images = [
   { src: equipoTecnologia, alt: "Instrumental de ultrasonido de última generación", label: "Tecnología de vanguardia" },

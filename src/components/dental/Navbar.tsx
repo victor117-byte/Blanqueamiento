@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
-import logoImg from "@/assets/Logo.jpeg";
+import logoImg from "@/assets/Logo.webp";
 import { trackEvent } from "@/lib/analytics";
 
 const navItems = [

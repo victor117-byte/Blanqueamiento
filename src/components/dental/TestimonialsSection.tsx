@@ -1,10 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { BadgeCheck } from "lucide-react";
-import paciente1 from "@/assets/paciente-1-sonrisa.jpeg";
-import paciente3 from "@/assets/paciente-3-sonrisa.jpeg";
-import paciente4 from "@/assets/paciente-4-sonrisa.jpeg";
-import paciente6 from "@/assets/paciente-6-sonrisa.jpeg";
+import paciente1 from "@/assets/paciente-1-sonrisa.webp";
+import paciente3 from "@/assets/paciente-3-sonrisa.webp";
+import paciente4 from "@/assets/paciente-4-sonrisa.webp";
+import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 
 const testimonials = [
   { src: paciente1, alt: "Paciente real sonriendo tras su tratamiento de blanqueamiento dental" },

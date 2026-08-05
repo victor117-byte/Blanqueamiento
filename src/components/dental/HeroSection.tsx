@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Star, Award, Users, ThumbsUp, ArrowDown, BadgeCheck } from "lucide-react";
-import paciente5 from "@/assets/paciente-5-sonrisa.jpeg";
-import paciente1 from "@/assets/paciente-1-sonrisa.jpeg";
-import paciente3 from "@/assets/paciente-3-sonrisa.jpeg";
-import paciente6 from "@/assets/paciente-6-sonrisa.jpeg";
-import paciente4 from "@/assets/paciente-4-sonrisa.jpeg";
+import paciente5 from "@/assets/paciente-5-sonrisa.webp";
+import paciente1 from "@/assets/paciente-1-sonrisa.webp";
+import paciente3 from "@/assets/paciente-3-sonrisa.webp";
+import paciente6 from "@/assets/paciente-6-sonrisa.webp";
+import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import { trackEvent } from "@/lib/analytics";
 
 const stats = [
