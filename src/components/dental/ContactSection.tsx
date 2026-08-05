@@ -1,12 +1,23 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, Star } from "lucide-react";
+import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
 
 const WHATSAPP_URL =
   "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
 
 const contactItems = [
+  {
+    icon: CalendarClock,
+    title: "Agenda en línea",
+    detail: "Elige tu horario",
+    sub: "Confirmación al instante",
+    href: BOOKING_URL,
+    highlight: true,
+    color: "text-navy",
+    bg: "bg-navy/10",
+  },
   {
     icon: Phone,
     title: "Teléfono",
@@ -22,7 +33,6 @@ const contactItems = [
     detail: "Escríbenos ahora",
     sub: "Respuesta inmediata",
     href: WHATSAPP_URL,
-    highlight: true,
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
   },
@@ -111,7 +121,7 @@ const ContactSection = () => {
                 <div
                   className={`flex items-center gap-4 rounded-2xl p-5 shadow-card transition-all duration-300 ${
                     highlight
-                      ? "bg-[#25D366] hover:bg-[#1ebe57] hover:shadow-gold cursor-pointer"
+                      ? "bg-gradient-to-r from-navy to-navy-dark hover:shadow-gold cursor-pointer"
                       : "bg-card hover:shadow-elevated hover:border-navy/15 border border-border"
                   }`}
                 >
@@ -132,7 +142,7 @@ const ContactSection = () => {
                   {highlight && (
                     <div className="ml-auto shrink-0">
                       <span className="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full">
-                        Chat
+                        Agendar
                       </span>
                     </div>
                   )}
@@ -154,6 +164,7 @@ const ContactSection = () => {
                       onClick={() => {
                         if (href.startsWith("tel:")) trackEvent("phone_click", { location: "contact_card" });
                         if (href.startsWith("https://wa.me")) trackEvent("whatsapp_click", { location: "contact_card" });
+                        if (href === BOOKING_URL) trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
                       }}
                       className="block"
                       aria-label={title}
@@ -169,13 +180,12 @@ const ContactSection = () => {
 
             {/* CTA principal */}
             <motion.a
-              href={WHATSAPP_URL}
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              id="contact-whatsapp-cta"
+              id="contact-calendar-cta"
               onClick={() => {
-                trackEvent("whatsapp_click", { location: "contact_main_cta" });
-                trackEvent("cta_agendar_click", { location: "contact_main_cta" });
+                trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -185,7 +195,7 @@ const ContactSection = () => {
               className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-navy to-navy-dark px-6 py-4 text-sm font-bold text-white shadow-soft hover:shadow-elevated transition-all duration-300 mt-2"
             >
               <CalendarCheck className="h-5 w-5" />
-              Agendar cita por WhatsApp
+              Agendar cita en línea
             </motion.a>
           </motion.div>
 

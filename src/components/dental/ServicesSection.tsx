@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Waves, Stethoscope, Baby, CircleDot, Smile, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
 
 const services = [
   {
@@ -125,8 +126,10 @@ const ServicesSection = () => {
                   {service.description}
                 </p>
                 <a
-                  href="#contacto"
-                  onClick={() => trackEvent("cta_agendar_click", { location: "services_card", service: service.title })}
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("cta_agendar_click", { location: "services_card", service: service.title, method: "calendar" })}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold/70 group-hover:text-gold transition-colors duration-300"
                 >
                   Agendar cita
@@ -145,9 +148,11 @@ const ServicesSection = () => {
           className="text-center mt-12"
         >
           <a
-            href="#contacto"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             id="services-cta"
-            onClick={() => trackEvent("cta_agendar_click", { location: "services_bottom" })}
+            onClick={() => trackEvent("cta_agendar_click", { location: "services_bottom", method: "calendar" })}
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
           >
             Consulta gratis — Agenda hoy
