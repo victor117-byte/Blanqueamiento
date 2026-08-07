@@ -7,10 +7,10 @@ import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 
 const testimonials = [
-  { src: paciente1, alt: "Paciente real sonriendo tras su tratamiento de blanqueamiento dental" },
+  { src: paciente1, alt: "Paciente real sonriendo tras su tratamiento de blanqueamiento dental en CDMX" },
   { src: paciente3, alt: "Paciente real satisfecha con su nueva sonrisa" },
   { src: paciente4, alt: "Paciente real satisfecho con su nueva sonrisa" },
-  { src: paciente6, alt: "Paciente real sonriendo tras su tratamiento de blanqueamiento dental" },
+  { src: paciente6, alt: "Paciente real con su nueva sonrisa tras el tratamiento de estética dental" },
 ];
 
 const TestimonialsSection = () => {

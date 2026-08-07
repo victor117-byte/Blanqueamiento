@@ -85,7 +85,7 @@ const Footer = () => {
               Servicios
             </h4>
             <ul className="space-y-2.5 text-sm text-white/50">
-              {["Blanqueamiento Dental", "Limpieza con Ultrasonido", "Ortodoncia", "Implantología", "Odontopediatría", "Odontología General"].map((s) => (
+              {["Blanqueamiento Dental", "Limpieza con Ultrasonido", "Ortodoncia", "Implantología", "Estética Dental", "Odontología General"].map((s) => (
                 <li key={s}>
                   <a href="#servicios" className="hover:text-gold transition-colors duration-200">
                     {s}

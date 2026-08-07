@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Waves, Stethoscope, Baby, CircleDot, Smile, ArrowRight } from "lucide-react";
+import { Sparkles, Waves, Stethoscope, Gem, CircleDot, Smile, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -51,13 +51,13 @@ const services = [
     iconBg: "bg-rose-500/10",
   },
   {
-    icon: Baby,
-    title: "Odontopediatría",
+    icon: Gem,
+    title: "Estética Dental",
     description:
-      "Atención dental especializada para los más pequeños en un ambiente amigable, cálido y de confianza.",
-    color: "from-orange-500/20 to-amber-400/10",
-    iconColor: "text-orange-500",
-    iconBg: "bg-orange-500/10",
+      "Carillas dentales y diseño de sonrisa personalizado para armonizar forma, color y alineación de tus dientes.",
+    color: "from-fuchsia-500/20 to-pink-400/10",
+    iconColor: "text-fuchsia-500",
+    iconBg: "bg-fuchsia-500/10",
   },
 ];
 

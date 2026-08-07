@@ -36,12 +36,31 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: a,
+    },
+  })),
+};
+
 const FAQSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section id="faq" className="py-28 bg-background relative overflow-hidden">
+      {/* Datos estructurados: habilita el rich result de preguntas frecuentes en Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Decorative blobs */}
       <div className="absolute top-1/4 -left-32 w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-72 h-72 rounded-full bg-gold/5 blur-3xl pointer-events-none" />

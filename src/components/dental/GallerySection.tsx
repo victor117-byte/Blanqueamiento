@@ -10,8 +10,8 @@ import videoPoster from "@/assets/video-antes-despues-poster.webp";
 const images = [
   { src: equipoTecnologia, alt: "Instrumental de ultrasonido de última generación", label: "Tecnología de vanguardia" },
   { src: limpiezaUltrasonido, alt: "Antes y después de limpieza dental con ultrasonido", label: "Limpieza profesional" },
-  { src: paciente1Dientes, alt: "Antes y después de blanqueamiento dental — paciente real", label: "Resultado real" },
-  { src: paciente2Dientes, alt: "Antes y después de blanqueamiento dental — paciente real", label: "Sonrisa renovada" },
+  { src: paciente1Dientes, alt: "Antes y después de blanqueamiento dental en CDMX — paciente real", label: "Resultado real" },
+  { src: paciente2Dientes, alt: "Resultado de estética dental — sonrisa antes y después", label: "Sonrisa renovada" },
 ];
 
 const GallerySection = () => {
