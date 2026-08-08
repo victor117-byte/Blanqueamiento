@@ -132,26 +132,20 @@
     </script>
 
     <!--
-      Google Tag Manager — pendiente de activar.
-      1. Crea un contenedor en https://tagmanager.google.com y copia tu ID (GTM-XXXXXXX).
-      2. Reemplaza GTM-XXXXXXX por ese ID en las DOS líneas de abajo.
-      3. Descomenta este bloque <script> y el <noscript> del <body>.
+      Google Tag Manager (GTM-NT97DXWK).
       El sitio ya envía eventos a window.dataLayer (whatsapp_click, phone_click,
-      cta_agendar_click) — en cuanto actives GTM podrás crear ahí las etiquetas
-      de conversión de Google Ads / GA4 sin tocar el código.
-
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+      cta_agendar_click) — las etiquetas de conversión de Google Ads / GA4 se
+      configuran desde tagmanager.google.com sin tocar este código.
     -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NT97DXWK');</script>
 </head>
   <body>
-    <!--
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT97DXWK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
