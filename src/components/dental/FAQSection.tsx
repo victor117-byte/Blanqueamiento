@@ -32,7 +32,11 @@ const faqs = [
   },
   {
     q: "¿Cuántas sesiones necesito para ver resultados?",
-    a: "Para el blanqueamiento, los resultados son visibles desde la primera sesión. Para otros tratamientos como ortodoncia, el número de sesiones dependerá de la evaluación inicial que realizamos de forma gratuita.",
+    a: "Para el blanqueamiento, los resultados son visibles desde la primera sesión. Para otros tratamientos como ortodoncia, el número de sesiones dependerá de la evaluación inicial que realizamos en tu primera cita.",
+  },
+  {
+    q: "¿Necesito pagar algo para agendar mi cita?",
+    a: "Sí, al reservar tu horario en línea se solicita un anticipo de $500 MXN, pagado con tarjeta de forma segura. Este anticipo se descuenta del costo total de tu tratamiento — no es un cargo adicional.",
   },
 ];
 

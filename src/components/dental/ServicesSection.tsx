@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Waves, Stethoscope, Gem, CircleDot, Smile, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
 
 const services = [
   {
@@ -129,7 +129,12 @@ const ServicesSection = () => {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackEvent("cta_agendar_click", { location: "services_card", service: service.title, method: "calendar" })}
+                  data-cal-link={CAL_LINK}
+                  data-cal-config={JSON.stringify({ theme: "light" })}
+                  onClick={() => {
+                    setBookingContext({ location: "services_card", service: service.title });
+                    trackEvent("cta_agendar_click", { location: "services_card", service: service.title, method: "calendar" });
+                  }}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold/70 group-hover:text-gold transition-colors duration-300"
                 >
                   Agendar cita
@@ -152,10 +157,15 @@ const ServicesSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="services-cta"
-            onClick={() => trackEvent("cta_agendar_click", { location: "services_bottom", method: "calendar" })}
+            data-cal-link={CAL_LINK}
+            data-cal-config={JSON.stringify({ theme: "light" })}
+            onClick={() => {
+              setBookingContext({ location: "services_bottom" });
+              trackEvent("cta_agendar_click", { location: "services_bottom", method: "calendar" });
+            }}
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
           >
-            Consulta gratis — Agenda hoy
+            Agenda tu cita hoy
             <ArrowRight className="h-4 w-4" />
           </a>
         </motion.div>
