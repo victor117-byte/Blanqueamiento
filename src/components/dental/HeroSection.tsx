@@ -138,6 +138,16 @@ const HeroSection = () => {
                 Ver Servicios
               </a>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+              className="text-xs text-white/50 mt-4"
+            >
+              Se requiere un <strong className="text-white/70 font-semibold">anticipo de $500 MXN</strong> para
+              agendar, el cual se descuenta del costo de tu tratamiento.
+            </motion.p>
           </div>
 
           {/* Image column: paciente real, en tarjeta enmarcada */}
