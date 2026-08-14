@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: "¿Necesito pagar algo para agendar mi cita?",
-    a: "Sí, al reservar tu horario en línea se solicita un anticipo de $500 MXN, pagado con tarjeta de forma segura. Este anticipo se descuenta del costo total de tu tratamiento — no es un cargo adicional.",
+    a: "Sí, al reservar tu horario en línea se solicita un anticipo de $150 MXN, pagado con tarjeta de forma segura. Este anticipo se descuenta del costo total de tu tratamiento — no es un cargo adicional.",
   },
 ];
 
