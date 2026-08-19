@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
 import logoImg from "@/assets/Logo.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
+import { BOOKING_URL, CAL_LINK, setBookingContext, preventDefaultIfCalReady } from "@/lib/booking";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -85,7 +85,8 @@ const Navbar = () => {
             rel="noopener noreferrer"
             data-cal-link={CAL_LINK}
             data-cal-config={JSON.stringify({ theme: "light" })}
-            onClick={() => {
+            onClick={(e) => {
+              preventDefaultIfCalReady(e);
               setBookingContext({ location: "navbar_desktop" });
               trackEvent("cta_agendar_click", { location: "navbar_desktop", method: "calendar" });
             }}
@@ -146,7 +147,8 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   data-cal-link={CAL_LINK}
                   data-cal-config={JSON.stringify({ theme: "light" })}
-                  onClick={() => {
+                  onClick={(e) => {
+                    preventDefaultIfCalReady(e);
                     setIsOpen(false);
                     setBookingContext({ location: "navbar_mobile" });
                     trackEvent("cta_agendar_click", { location: "navbar_mobile", method: "calendar" });

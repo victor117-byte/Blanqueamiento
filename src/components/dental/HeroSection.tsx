@@ -7,7 +7,7 @@ import paciente3 from "@/assets/paciente-3-sonrisa.webp";
 import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
+import { BOOKING_URL, CAL_LINK, setBookingContext, preventDefaultIfCalReady } from "@/lib/booking";
 
 const stats = [
   { icon: Award, value: "20+", label: "Años de exp." },
@@ -122,7 +122,8 @@ const HeroSection = () => {
                 id="hero-cta-primary"
                 data-cal-link={CAL_LINK}
                 data-cal-config={JSON.stringify({ theme: "light" })}
-                onClick={() => {
+                onClick={(e) => {
+                  preventDefaultIfCalReady(e);
                   setBookingContext({ location: "hero" });
                   trackEvent("cta_agendar_click", { location: "hero", method: "calendar" });
                 }}

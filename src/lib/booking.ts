@@ -21,3 +21,21 @@ export function setBookingContext(ctx: { location?: string; service?: string }) 
 export function getBookingContext() {
   return lastBookingContext;
 }
+
+declare global {
+  interface Window {
+    Cal?: unknown;
+  }
+}
+
+// Los botones de "Agendar cita" tienen href+target="_blank" como respaldo
+// (por si el embed de Cal.com no carga) además de data-cal-link para el
+// modal. El propio script de Cal.com no cancela la navegación del <a>, así
+// que sin esto se abren las dos cosas a la vez: el modal Y una pestaña
+// nueva. Solo cancelamos la navegación cuando el embed ya cargó (window.Cal
+// existe) — si no cargó, se conserva el respaldo de abrir cal.com aparte.
+export function preventDefaultIfCalReady(e: { preventDefault: () => void }) {
+  if (typeof window !== "undefined" && window.Cal) {
+    e.preventDefault();
+  }
+}

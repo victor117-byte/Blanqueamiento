@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
+import { BOOKING_URL, CAL_LINK, setBookingContext, preventDefaultIfCalReady } from "@/lib/booking";
 
 const WHATSAPP_URL =
   "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
@@ -164,10 +164,11 @@ const ContactSection = () => {
                       {...(href === BOOKING_URL
                         ? { "data-cal-link": CAL_LINK, "data-cal-config": JSON.stringify({ theme: "light" }) }
                         : {})}
-                      onClick={() => {
+                      onClick={(e) => {
                         if (href.startsWith("tel:")) trackEvent("phone_click", { location: "contact_card" });
                         if (href.startsWith("https://wa.me")) trackEvent("whatsapp_click", { location: "contact_card" });
                         if (href === BOOKING_URL) {
+                          preventDefaultIfCalReady(e);
                           setBookingContext({ location: "contact_card" });
                           trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
                         }
@@ -192,7 +193,8 @@ const ContactSection = () => {
               id="contact-calendar-cta"
               data-cal-link={CAL_LINK}
               data-cal-config={JSON.stringify({ theme: "light" })}
-              onClick={() => {
+              onClick={(e) => {
+                preventDefaultIfCalReady(e);
                 setBookingContext({ location: "contact_main_cta" });
                 trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
               }}
