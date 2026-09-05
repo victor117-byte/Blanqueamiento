@@ -22,8 +22,17 @@ legal. No tiene backend propio ni base de datos — es un sitio estático.
 | Hosting | Vercel |
 | DNS | Cloudflare (solo DNS, ver sección de seguridad) |
 
-Ver [CLAUDE.md](CLAUDE.md) para comandos de desarrollo y el detalle de la
-arquitectura del código (rutas, estructura de `src/`, etc.).
+## Desarrollo
+
+- `npm run dev` — servidor de desarrollo de Vite (puerto 8080).
+- `npm run build` / `npm run build:dev` — build de producción / modo desarrollo.
+- `npm run preview` — sirve el build ya generado.
+- `npm run lint` — ESLint sobre todo el repo.
+- `npm run test` — corre la suite de Vitest una vez; `npm run test:watch` en modo watch.
+- Un solo archivo de test: `npx vitest run src/ruta/al/archivo.test.ts`.
+- E2E con Playwright: configurado contra `./e2e` (aún no existe esa carpeta, hay que crearla antes de escribir specs), levantando `npm run preview` en el puerto 4173 automáticamente.
+
+Tanto `package-lock.json` como `bun.lock`/`bun.lockb` están en el repo; confirmar cuál es el vigente antes de instalar dependencias para no reescribir el otro por accidente.
 
 ## Despliegue
 
