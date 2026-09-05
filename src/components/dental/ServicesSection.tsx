@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Waves, Stethoscope, Gem, CircleDot, Smile, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL, CAL_LINK, setBookingContext, preventDefaultIfCalReady } from "@/lib/booking";
+import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
 
 const services = [
   {
@@ -131,8 +131,7 @@ const ServicesSection = () => {
                   rel="noopener noreferrer"
                   data-cal-link={CAL_LINK}
                   data-cal-config={JSON.stringify({ theme: "light" })}
-                  onClick={(e) => {
-                    preventDefaultIfCalReady(e);
+                  onClick={() => {
                     setBookingContext({ location: "services_card", service: service.title });
                     trackEvent("cta_agendar_click", { location: "services_card", service: service.title, method: "calendar" });
                   }}
@@ -160,8 +159,7 @@ const ServicesSection = () => {
             id="services-cta"
             data-cal-link={CAL_LINK}
             data-cal-config={JSON.stringify({ theme: "light" })}
-            onClick={(e) => {
-              preventDefaultIfCalReady(e);
+            onClick={() => {
               setBookingContext({ location: "services_bottom" });
               trackEvent("cta_agendar_click", { location: "services_bottom", method: "calendar" });
             }}
