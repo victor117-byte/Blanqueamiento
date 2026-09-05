@@ -168,10 +168,6 @@ const ServicesSection = () => {
             Agenda tu cita hoy
             <ArrowRight className="h-4 w-4" />
           </a>
-          <p className="text-xs text-white/50 mt-4">
-            Se requiere un <strong className="text-white/70 font-semibold">anticipo de $500 MXN</strong> para
-            agendar, a cuenta de tu tratamiento.
-          </p>
         </motion.div>
       </div>
     </section>

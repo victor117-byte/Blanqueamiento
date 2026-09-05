@@ -207,8 +207,7 @@ const ContactSection = () => {
               Agendar cita en línea
             </motion.a>
             <p className="text-xs text-muted-foreground text-center mt-2">
-              Se solicita un <strong className="text-foreground font-semibold">anticipo de $500 MXN</strong> al
-              reservar, que se descuenta del costo de tu tratamiento.
+              Se solicita un anticipo de $500 MXN al reservar, que se descuenta del costo de tu tratamiento.
             </p>
           </motion.div>
 
