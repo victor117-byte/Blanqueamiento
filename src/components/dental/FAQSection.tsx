@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: "¿Necesito pagar algo para agendar mi cita?",
-    a: "No, agendar tu cita en línea no tiene ningún costo. Eliges tu horario, dejas tus datos y tu cita queda confirmada de inmediato, sin necesidad de pagar por adelantado.",
+    a: "Sí, al reservar tu horario en línea se solicita un anticipo de $150 MXN, pagado con tarjeta de forma segura. Este anticipo se descuenta del costo total de tu tratamiento — no es un cargo adicional.",
   },
 ];
 

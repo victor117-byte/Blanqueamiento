@@ -12,7 +12,7 @@ const contactItems = [
     icon: CalendarClock,
     title: "Agenda en línea",
     detail: "Elige tu horario",
-    sub: "Sin costo, confirmación inmediata",
+    sub: "Anticipo de $150 MXN (a cuenta de tu tratamiento)",
     href: BOOKING_URL,
     highlight: true,
     color: "text-navy",
@@ -206,6 +206,10 @@ const ContactSection = () => {
               <CalendarCheck className="h-5 w-5" />
               Agendar cita en línea
             </motion.a>
+            <p className="text-xs text-muted-foreground text-center mt-2">
+              Se solicita un <strong className="text-foreground font-semibold">anticipo de $150 MXN</strong> al
+              reservar, que se descuenta del costo de tu tratamiento.
+            </p>
           </motion.div>
 
           {/* Right column: Map */}
