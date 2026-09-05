@@ -36,31 +36,94 @@ está "proxied" (nube gris, no naranja) — los A/CNAME resuelven directo a la
 red de Vercel, que es quien sirve el tráfico, la terminación TLS y el CDN/edge
 cache. Cloudflare aquí no está actuando como WAF/CDN/proxy, solo como zona DNS.
 
+### Diagrama de arquitectura y flujo de tráfico
+
 ```mermaid
-flowchart LR
-    U["Visitante"] -->|HTTPS| DNS["Cloudflare DNS\n(blanqueamiento.com.mx)\nsolo resolución, sin proxy"]
-    DNS -->|resuelve a IP de Vercel| EDGE["Vercel Edge Network\nTLS, CDN, cache estático"]
-    EDGE --> STATIC["Build estático\n(vite build → dist/)"]
+flowchart TB
+    subgraph CLIENT["Cliente"]
+        U["Visitante\n(navegador / móvil)"]
+    end
 
-    DEV["git push a main"] -->|webhook| BUILD["Vercel Build\nnpm install + vite build"]
-    BUILD --> EDGE
+    subgraph CFZ["Capa DNS — Cloudflare"]
+        DNS["Zona DNS blanqueamiento.com.mx\nnameservers: edward/ximena.ns.cloudflare.com\nnube GRIS: solo resuelve, no proxya"]
+    end
 
-    STATIC -.-> GTM["Google Tag Manager\nGTM-NT97DXWK"]
-    GTM -.-> GA["Google Ads / GA4\n(tags configurados en GTM, no en código)"]
+    subgraph VERCEL["Capa Edge/Hosting — Vercel"]
+        TLS["TLS termination + HSTS\n(max-age=63072000)"]
+        REDIR["Redirect 308\napex → www"]
+        EDGE["Edge Network / CDN\ncache de assets estáticos"]
+        APP["SPA React\n(dist/ generado con vite build)\nRouter: /, /privacidad, /aviso-legal, 404"]
+        TLS --> REDIR --> EDGE --> APP
+    end
+
+    subgraph CICD["CI/CD"]
+        GH["GitHub — rama main"] -->|webhook en push/merge| BUILD["Vercel Build\nnpm install + vite build"]
+        BUILD -->|publica dist/| EDGE
+    end
+
+    subgraph THIRD["Servicios de terceros (llamados desde el navegador del cliente)"]
+        GTM["Google Tag Manager\nGTM-NT97DXWK"]
+        GA["GA4 / Google Ads\n(tags configurados en GTM)"]
+        FONTS["Google Fonts\n(preconnect)"]
+        MAPS["Google Maps embed\n(iframe ubicación)"]
+        WA["WhatsApp\nwa.me/525574441235"]
+        CAL["Notion Calendar\n(botón Agendar cita)"]
+        TEL["tel:525574441235"]
+        GTM --> GA
+    end
+
+    U -->|1. resuelve dominio\nDNS query| DNS
+    DNS -->|2. responde IP de Vercel| U
+    U -->|3. HTTPS GET| TLS
+    APP -->|4. HTML/JS/CSS servidos| U
+    U -.->|5. el navegador carga, ya sin pasar por el hosting| GTM
+    U -.-> FONTS
+    U -.-> MAPS
+    U -.->|clic en botón| WA
+    U -.->|clic en botón| CAL
+    U -.->|clic en botón| TEL
 ```
 
-Flujo de release: push/merge a `main` → Vercel detecta el webhook de GitHub →
-corre `npm run build` → publica el `dist/` resultante en su edge network →
-el dominio (resuelto vía Cloudflare DNS) sirve la versión nueva de inmediato,
-sin pasos manuales.
+**Cómo leerlo:** los pasos 1-4 son el único tráfico que toca infraestructura
+propia (Cloudflare para resolver el nombre, Vercel para servir el sitio). El
+paso 5 en adelante ocurre **directo desde el navegador del visitante** hacia
+terceros — este sitio no hace de proxy ni de backend para WhatsApp, Maps,
+Notion Calendar o Google: son botones/links/iframes que sacan al usuario (o
+cargan un script) fuera de la infraestructura que controlamos. Por eso no hay
+API propia que asegurar: la superficie que sí controlamos es solo "Cloudflare
+DNS → Vercel edge → assets estáticos".
+
+Flujo de release (CI/CD): push/merge a `main` → Vercel detecta el webhook de
+GitHub → corre `npm run build` → publica el `dist/` resultante en su edge
+network → el dominio (resuelto vía Cloudflare DNS) sirve la versión nueva de
+inmediato, sin pasos manuales ni aprobación intermedia.
 
 ## Capas de seguridad
 
-Estado real verificado contra el sitio en producción (headers HTTP, DNS):
+Estado real verificado contra el sitio en producción (headers HTTP, DNS), capa
+por capa siguiendo el diagrama de arriba:
 
+**Capa 1 — DNS (Cloudflare)**
+- La zona está delegada a Cloudflare, pero el registro es "DNS only" (nube
+  gris): Cloudflare **no** actúa como proxy/WAF/CDN para este dominio, solo
+  resuelve el nombre. La IP que se entrega al cliente ya es de Vercel.
+- Consecuencia de seguridad: no hay hoy mitigación DDoS ni WAF de Cloudflare
+  delante del tráfico, ni se oculta la IP de origen. Si se quiere esa capa,
+  hay que activar el proxy (nube naranja) en el DNS.
+
+**Capa 2 — Edge/Hosting (Vercel)**
 - **TLS/HTTPS**: terminado por Vercel, con `Strict-Transport-Security: max-age=63072000` (HSTS) en todas las respuestas — fuerza HTTPS en el navegador incluso si alguien entra por HTTP.
-- **Redirect apex → www**: `blanqueamiento.com.mx` responde 308 hacia `www.blanqueamiento.com.mx`, evitando contenido duplicado y fijando un único origen canónico.
-- **Superficie de ataque mínima**: al ser un sitio estático sin backend, sin base de datos y sin autenticación de usuarios, no hay endpoints de API, formularios con procesamiento server-side propio ni datos de clientes almacenados en este repo — se elimina toda una clase de vulnerabilidades (inyección SQL, auth rota, IDOR, etc.).
-- **Sin secretos en el repo**: no hay `.env` ni credenciales versionadas; el único servicio de terceros integrado es Google Tag Manager (contenedor público `GTM-NT97DXWK`), sin API keys sensibles en el cliente.
-- **DNS en Cloudflare, sin proxy activo**: al no estar "proxied", Cloudflare **no** aporta hoy WAF, mitigación DDoS ni ocultamiento de la IP de origen para este dominio — esa protección la da la red de Vercel directamente. Si se quiere una capa adicional de WAF/DDoS de Cloudflare, habría que activar el proxy (nube naranja) en el registro DNS.
-- **Gaps detectados (no implementados actualmente)**: no se envían cabeceras `Content-Security-Policy`, `X-Frame-Options`/`frame-ancestors` ni `X-Content-Type-Options`. Al no haber CSP, un XSS vía script de terceros mal configurado no tendría una barrera adicional del navegador. Se puede agregar vía `vercel.json` (`headers`) si se quiere endurecer esto.
+- **Redirect 308 apex → www**: `blanqueamiento.com.mx` → `https://www.blanqueamiento.com.mx/`, evita contenido duplicado y fija un único origen canónico.
+- Vercel Edge Network sirve los assets estáticos desde CDN (cache-control público), con protección DDoS de infraestructura propia de Vercel a ese nivel.
+- **Gaps detectados (no implementados actualmente)**: no se envían cabeceras `Content-Security-Policy`, `X-Frame-Options`/`frame-ancestors` ni `X-Content-Type-Options`. Sin CSP, un XSS vía script de terceros mal configurado no tiene una barrera adicional del navegador. Se puede agregar vía `vercel.json` (`headers`) si se quiere endurecer esto.
+
+**Capa 3 — Aplicación (SPA React)**
+- Sitio 100% estático: sin backend, sin base de datos, sin autenticación de usuarios ni endpoints de API propios en este repo — elimina toda una clase de vulnerabilidades (inyección SQL, auth rota, IDOR, RCE server-side, etc.) porque no hay servidor de aplicación que atacar.
+- **Sin secretos en el repo**: no hay `.env` ni credenciales versionadas.
+- La única entrada de datos del visitante son los links/iframe de contacto (WhatsApp, tel:, Maps, Notion Calendar) — no se procesa ni almacena ningún dato personal en este código; el "envío" real ocurre en la infraestructura de esos terceros, no en el sitio.
+
+**Capa 4 — CI/CD (GitHub → Vercel)**
+- Cualquier push/merge a `main` dispara build y deploy automático sin paso de aprobación manual — es decir, `main` protegido (branch protection / revisión de PRs) es el control de seguridad real sobre qué llega a producción, no algo que se pueda ver en este repo.
+
+**Capa 5 — Terceros llamados desde el navegador del cliente**
+- Google Tag Manager (`GTM-NT97DXWK`), Google Fonts, Google Maps embed, WhatsApp (`wa.me`) y Notion Calendar se cargan/enlazan directo desde el cliente, fuera de nuestra infraestructura. El único control de nuestro lado sobre ellos sería una CSP (ver gap arriba) que restrinja qué orígenes puede cargar el navegador.
