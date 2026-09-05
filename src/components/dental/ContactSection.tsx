@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL, CAL_LINK, setBookingContext } from "@/lib/booking";
+import { BOOKING_URL } from "@/lib/booking";
 
 const WHATSAPP_URL =
   "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
@@ -12,7 +12,7 @@ const contactItems = [
     icon: CalendarClock,
     title: "Agenda en línea",
     detail: "Elige tu horario",
-    sub: "Anticipo de $500 MXN (a cuenta de tu tratamiento)",
+    sub: "Confirmación al instante",
     href: BOOKING_URL,
     highlight: true,
     color: "text-navy",
@@ -161,16 +161,10 @@ const ContactSection = () => {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      {...(href === BOOKING_URL
-                        ? { "data-cal-link": CAL_LINK, "data-cal-config": JSON.stringify({ theme: "light" }) }
-                        : {})}
                       onClick={() => {
                         if (href.startsWith("tel:")) trackEvent("phone_click", { location: "contact_card" });
                         if (href.startsWith("https://wa.me")) trackEvent("whatsapp_click", { location: "contact_card" });
-                        if (href === BOOKING_URL) {
-                          setBookingContext({ location: "contact_card" });
-                          trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
-                        }
+                        if (href === BOOKING_URL) trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
                       }}
                       className="block"
                       aria-label={title}
@@ -190,10 +184,7 @@ const ContactSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="contact-calendar-cta"
-              data-cal-link={CAL_LINK}
-              data-cal-config={JSON.stringify({ theme: "light" })}
               onClick={() => {
-                setBookingContext({ location: "contact_main_cta" });
                 trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -206,9 +197,6 @@ const ContactSection = () => {
               <CalendarCheck className="h-5 w-5" />
               Agendar cita en línea
             </motion.a>
-            <p className="text-xs text-muted-foreground text-center mt-2">
-              Se solicita un anticipo de $500 MXN al reservar, que se descuenta del costo de tu tratamiento.
-            </p>
           </motion.div>
 
           {/* Right column: Map */}
