@@ -1,7 +1,7 @@
 import { Phone, MapPin, MessageCircle, Instagram, Facebook, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "@/lib/analytics";
-import { ADDRESS_FOOTER, MAPS_PLACE_URL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
+import { ADDRESS_FULL, MAPS_PLACE_URL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -131,7 +131,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-200 leading-relaxed"
                 >
-                  World Trade Center<br />{ADDRESS_FOOTER}
+                  {ADDRESS_FULL}
                 </a>
               </div>
               <div className="pt-1">

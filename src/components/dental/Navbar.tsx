@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
 import logoImg from "@/assets/Logo.webp";
 import { trackEvent } from "@/lib/analytics";
-import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
+import { BOOKING_URL } from "@/lib/booking";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -80,13 +81,13 @@ const Navbar = () => {
             </a>
           </div>
           <a
-            href={WHATSAPP_URL}
+            href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("whatsapp_click", { location: "navbar_desktop" })}
+            onClick={() => trackEvent("cta_agendar_click", { location: "navbar_desktop", method: "calendar" })}
             className="ml-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-2.5 text-sm font-bold text-white hover:shadow-gold hover:scale-105 active:scale-95 transition-all duration-200"
           >
-            Escríbenos por WhatsApp
+            Agendar cita
           </a>
         </div>
 
@@ -136,16 +137,16 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href={WHATSAPP_URL}
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {
                     setIsOpen(false);
-                    trackEvent("whatsapp_click", { location: "navbar_mobile" });
+                    trackEvent("cta_agendar_click", { location: "navbar_mobile", method: "calendar" });
                   }}
                   className="flex items-center justify-center mt-1 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-3 text-sm font-bold text-white"
                 >
-                  Escríbenos por WhatsApp
+                  Agendar cita
                 </a>
               </li>
             </ul>

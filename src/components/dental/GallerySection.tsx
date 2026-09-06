@@ -1,15 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import equipoTecnologia from "@/assets/equipo-tecnologia.webp";
+import consultorioSillon from "@/assets/consultorio-sillon.jpg";
 import limpiezaUltrasonido from "@/assets/limpieza-ultrasonido.webp";
 import paciente1Dientes from "@/assets/paciente-1-dientes.webp";
 import paciente2Dientes from "@/assets/paciente-2-dientes.webp";
 import videoAntesDespues from "@/assets/video-antes-despues.mp4";
 import videoPoster from "@/assets/video-antes-despues-poster.webp";
-import { ADDRESS_INSTALACIONES_1, ADDRESS_INSTALACIONES_2, MAPS_PLACE_URL } from "@/lib/site";
+import { ADDRESS_FULL, MAPS_PLACE_URL } from "@/lib/site";
 
 const images = [
-  { src: equipoTecnologia, alt: "Instrumental de ultrasonido de última generación", label: "Tecnología de vanguardia" },
   { src: limpiezaUltrasonido, alt: "Antes y después de limpieza dental con ultrasonido", label: "Limpieza profesional" },
   { src: paciente1Dientes, alt: "Antes y después de blanqueamiento dental en CDMX — paciente real", label: "Resultado real" },
   { src: paciente2Dientes, alt: "Resultado de estética dental — sonrisa antes y después", label: "Sonrisa renovada" },
@@ -46,12 +45,10 @@ const GallerySection = () => {
             </span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Instalaciones de primer nivel en el World Trade Center CDMX, equipadas con tecnología de vanguardia.
+            Instalaciones de primer nivel en el World Trade Center, Nápoles, equipadas con tecnología de vanguardia.
           </p>
-          <p className="text-foreground font-medium mt-5 leading-relaxed">
-            {ADDRESS_INSTALACIONES_1}
-            <br />
-            {ADDRESS_INSTALACIONES_2}
+          <p className="text-foreground font-medium mt-5 leading-relaxed max-w-xl mx-auto">
+            {ADDRESS_FULL}
           </p>
           <a
             href={MAPS_PLACE_URL}
@@ -61,6 +58,25 @@ const GallerySection = () => {
           >
             Ver en Maps →
           </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative mb-8 rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50 aspect-[16/9] md:aspect-[21/9]"
+        >
+          <img
+            src={consultorioSillon}
+            alt="Consultorio de Blanqueamiento Dental Center en el World Trade Center: sillón y lámpara de fotoactivación"
+            className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent" />
+          <p className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-white text-sm md:text-base font-semibold">
+            Tecnología de vanguardia
+          </p>
         </motion.div>
 
         <motion.div

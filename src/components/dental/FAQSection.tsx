@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { HelpCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
 import { WHATSAPP_URL } from "@/lib/site";
 
 const faqs = [
@@ -120,6 +121,19 @@ const FAQSection = () => {
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5 pl-9">
                     {faq.a}
+                    {faq.q.includes("agendar mi cita") && (
+                      <p className="mt-4">
+                        <a
+                          href={BOOKING_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => trackEvent("cta_agendar_click", { location: "faq_item", method: "calendar" })}
+                          className="inline-flex font-semibold text-navy hover:text-gold transition-colors"
+                        >
+                          Agendar cita →
+                        </a>
+                      </p>
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>
@@ -136,6 +150,7 @@ const FAQSection = () => {
         >
           <p className="text-white/70 text-sm mb-1">¿Tienes más preguntas? Contáctanos directamente</p>
           <h3 className="font-display text-2xl font-bold text-white mb-5">Hablar con un especialista</h3>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -146,6 +161,17 @@ const FAQSection = () => {
           >
             Escríbenos por WhatsApp
           </a>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="faq-agendar-cta"
+            onClick={() => trackEvent("cta_agendar_click", { location: "faq_cta", method: "calendar" })}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition-all duration-300"
+          >
+            Agendar cita
+          </a>
+          </div>
         </motion.div>
       </div>
     </section>

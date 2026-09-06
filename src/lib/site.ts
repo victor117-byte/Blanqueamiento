@@ -9,11 +9,12 @@ export const MAPS_PLACE_URL = GOOGLE_REVIEWS_URL;
 export const GBP_CUT = "septiembre 2026";
 export const GBP_RATING = "5.0";
 export const GBP_COUNT = 43;
+/** Short geo line (stats bar, eyebrows). Clinic is inside the tower. */
+export const ADDRESS_SHORT = "World Trade Center, Nápoles";
+/** Full suite address for on-page mentions. */
+export const ADDRESS_FULL =
+  "World Trade Center, Montecito 38 Piso 2 Oficina 6B, Nápoles, Benito Juárez, 03810 CDMX";
 export const ADDRESS_NOSOTROS =
-  "Estamos en el World Trade Center en Montecito 38 segundo piso, oficina 6B en la colonia Nápoles. Contamos con instalaciones equipadas con tecnología de vanguardia, en un ambiente acogedor donde tu comodidad es la prioridad.";
-export const ADDRESS_INSTALACIONES_1 =
-  "Montecito 38 2o piso, Oficina 6B, Nápoles, Benito Juárez";
-export const ADDRESS_INSTALACIONES_2 = "03810 Ciudad de México, CDMX";
-export const ADDRESS_CONTACT =
-  "Montecito 38 2o piso, Oficina 6B, Nápoles, Benito Juárez, 03810 CDMX (WTC)";
-export const ADDRESS_FOOTER = "Montecito 38 2o piso, Oficina 6B, Nápoles, CDMX 03810";
+  "Estamos en el World Trade Center, Montecito 38 Piso 2 Oficina 6B, colonia Nápoles. Contamos con instalaciones equipadas con tecnología de vanguardia, en un ambiente acogedor donde tu comodidad es la prioridad.";
+export const ADDRESS_CONTACT = ADDRESS_FULL;
+export const ADDRESS_FOOTER = ADDRESS_FULL;

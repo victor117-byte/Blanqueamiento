@@ -1,11 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
+import recepcionPasillo from "@/assets/recepcion-pasillo.jpg";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
 import {
   ADDRESS_CONTACT,
-  ADDRESS_FOOTER,
+  ADDRESS_FULL,
   GBP_COUNT,
   GBP_RATING,
   MAPS_PLACE_URL,
@@ -28,8 +29,8 @@ const contactItems = [
   {
     icon: CalendarClock,
     title: "Agenda en línea",
-    detail: "Elige tu horario",
-    sub: "Sin costo por reservar",
+    detail: "Agendar cita",
+    sub: "Elige tu horario · sin costo por reservar",
     href: BOOKING_URL,
     color: "text-navy",
     bg: "bg-navy/10",
@@ -95,7 +96,7 @@ const ContactSection = () => {
             </span>
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Escríbenos por WhatsApp y te ayudamos a elegir horario. También puedes agendar en línea o llamarnos.
+            Escríbenos por WhatsApp y te ayudamos a elegir horario. También puedes agendar tu cita en línea o llamarnos.
           </p>
         </motion.div>
 
@@ -186,24 +187,44 @@ const ContactSection = () => {
             })}
 
             {/* CTA principal */}
-            <motion.a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="contact-whatsapp-cta"
-              onClick={() => {
-                trackEvent("whatsapp_click", { location: "contact_main_cta" });
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.75 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-navy to-navy-dark px-6 py-4 text-sm font-bold text-white shadow-soft hover:shadow-elevated transition-all duration-300 mt-2"
-            >
-              <CalendarCheck className="h-5 w-5" />
-              Escríbenos por WhatsApp
-            </motion.a>
+            <div className="flex flex-col sm:flex-row gap-3 mt-2">
+              <motion.a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="contact-whatsapp-cta"
+                onClick={() => {
+                  trackEvent("whatsapp_click", { location: "contact_main_cta" });
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.75 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center gap-2 flex-1 rounded-2xl bg-gradient-to-r from-navy to-navy-dark px-6 py-4 text-sm font-bold text-white shadow-soft hover:shadow-elevated transition-all duration-300"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Escríbenos por WhatsApp
+              </motion.a>
+              <motion.a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="contact-calendar-cta"
+                onClick={() => {
+                  trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center justify-center gap-2 flex-1 rounded-2xl border border-navy/20 bg-card px-6 py-4 text-sm font-bold text-navy shadow-card hover:shadow-elevated transition-all duration-300"
+              >
+                <CalendarCheck className="h-5 w-5" />
+                Agendar cita
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* Right column: Map */}
@@ -211,8 +232,18 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50"
+            className="space-y-4"
           >
+            <div className="rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
+              <img
+                src={recepcionPasillo}
+                alt="Pasillo e instalaciones de Blanqueamiento Dental Center en el World Trade Center, Nápoles"
+                className="w-full h-56 md:h-64 object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="rounded-3xl overflow-hidden shadow-elevated ring-1 ring-border/50">
             <iframe
               title="Blanqueamiento Dental Center — Ubicación"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.412506627659!2d-99.17552358887609!3d19.394574941817982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fffd7fb79449%3A0xb037e692bd30e79a!2sBLANQUEAMIENTO%20DENTAL%20CENTER!5e0!3m2!1ses!2smx!4v1773956744464!5m2!1ses!2smx"
@@ -225,7 +256,7 @@ const ContactSection = () => {
               <MapPin className="h-4 w-4 text-primary shrink-0" />
               <div>
                 <p className="text-sm font-semibold text-foreground">Blanqueamiento Dental Center</p>
-                <p className="text-xs text-muted-foreground">{ADDRESS_FOOTER}</p>
+                <p className="text-xs text-muted-foreground">{ADDRESS_FULL}</p>
               </div>
               <a
                 href={MAPS_PLACE_URL}
@@ -235,6 +266,7 @@ const ContactSection = () => {
               >
                 Ver en Maps →
               </a>
+            </div>
             </div>
           </motion.div>
         </div>

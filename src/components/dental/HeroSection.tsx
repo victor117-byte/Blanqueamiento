@@ -7,11 +7,12 @@ import paciente3 from "@/assets/paciente-3-sonrisa.webp";
 import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import { trackEvent } from "@/lib/analytics";
-import { GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
+import { BOOKING_URL } from "@/lib/booking";
+import { ADDRESS_SHORT, GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
 
 const stats = [
   { icon: Star, value: GBP_RATING, label: "Calificación en Google" },
-  { icon: MapPin, value: "Nápoles", label: "A pasos del WTC" },
+  { icon: MapPin, value: "WTC", label: ADDRESS_SHORT },
   { icon: Sparkles, value: "Fotoactivación", label: "Tecnología de blanqueamiento" },
   { icon: BadgeCheck, value: String(GBP_COUNT), label: "Reseñas en Google" },
 ];
@@ -74,7 +75,7 @@ const HeroSection = () => {
                 ))}
               </div>
               <span className="text-xs font-semibold uppercase tracking-wider text-gold">
-                Blanqueamiento Dental Center · Nápoles
+                {ADDRESS_SHORT}
               </span>
             </motion.div>
 
@@ -105,9 +106,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="text-lg text-white/75 mb-10 max-w-lg font-light leading-relaxed"
             >
-              Blanqueamiento dental por fotoactivación en Nápoles, Ciudad de
-              México. Tecnología de vanguardia, evaluación previa y atención
-              personalizada.
+              Blanqueamiento dental por fotoactivación en el World Trade Center,
+              Nápoles, Ciudad de México. Tecnología de vanguardia, evaluación
+              previa y atención personalizada.
             </motion.p>
 
             <motion.div
@@ -127,11 +128,14 @@ const HeroSection = () => {
                 Escríbenos por WhatsApp
               </a>
               <a
-                href="#servicios"
-                id="hero-cta-secondary"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="hero-cta-agendar"
+                onClick={() => trackEvent("cta_agendar_click", { location: "hero", method: "calendar" })}
                 className="inline-flex items-center justify-center rounded-2xl border border-white/25 bg-white/8 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-white hover:bg-white/15 hover:border-white/40 transition-all duration-300"
               >
-                Ver Servicios
+                Agendar cita
               </a>
             </motion.div>
           </div>

@@ -2,13 +2,13 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart, CheckCircle2, Star, MapPin } from "lucide-react";
 import smileImage from "@/assets/cambio-sonrisa.webp";
-import { ADDRESS_NOSOTROS, GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
+import { ADDRESS_NOSOTROS, ADDRESS_SHORT, GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
 import { trackEvent } from "@/lib/analytics";
 
 const stats = [
   { icon: Star, value: GBP_RATING, label: "Calificación Google" },
   { icon: Heart, value: String(GBP_COUNT), label: "Reseñas en Google" },
-  { icon: MapPin, value: "Nápoles", label: "WTC · Oficina 6B" },
+  { icon: MapPin, value: "WTC", label: ADDRESS_SHORT },
 ];
 
 const highlights = [

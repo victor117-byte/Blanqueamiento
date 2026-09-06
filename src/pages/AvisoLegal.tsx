@@ -20,7 +20,7 @@ const AvisoLegal = () => {
             </h2>
             <p>
               Este sitio web es operado por Blanqueamiento Dental Center, con domicilio en
-              Montecito 38, World Trade Center, colonia Nápoles, Benito Juárez, 03810, Ciudad de
+              World Trade Center, Montecito 38 Piso 2 Oficina 6B, colonia Nápoles, Benito Juárez, 03810, Ciudad de
               México. Puedes contactarnos a través del teléfono o WhatsApp indicados en la sección
               de contacto.
             </p>
