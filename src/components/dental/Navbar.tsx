@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
 import logoImg from "@/assets/Logo.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { BOOKING_URL, CAL_CONFIG, CAL_LINK, preventDefaultIfCalReady, setBookingContext } from "@/lib/booking";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const navItems = [
@@ -84,7 +84,13 @@ const Navbar = () => {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("cta_agendar_click", { location: "navbar_desktop", method: "calendar" })}
+            data-cal-link={CAL_LINK}
+            data-cal-config={CAL_CONFIG}
+            onClick={(e) => {
+              preventDefaultIfCalReady(e);
+              setBookingContext({ location: "navbar_desktop" });
+              trackEvent("cta_agendar_click", { location: "navbar_desktop", method: "calendar" });
+            }}
             className="ml-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-2.5 text-sm font-bold text-white hover:shadow-gold hover:scale-105 active:scale-95 transition-all duration-200"
           >
             Agendar cita
@@ -140,8 +146,12 @@ const Navbar = () => {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
+                  data-cal-link={CAL_LINK}
+                  data-cal-config={CAL_CONFIG}
+                  onClick={(e) => {
+                    preventDefaultIfCalReady(e);
                     setIsOpen(false);
+                    setBookingContext({ location: "navbar_mobile" });
                     trackEvent("cta_agendar_click", { location: "navbar_mobile", method: "calendar" });
                   }}
                   className="flex items-center justify-center mt-1 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-3 text-sm font-bold text-white"

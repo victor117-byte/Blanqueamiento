@@ -8,7 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { HelpCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { BOOKING_URL, CAL_CONFIG, CAL_LINK, preventDefaultIfCalReady, setBookingContext } from "@/lib/booking";
 import { WHATSAPP_URL } from "@/lib/site";
 
 const faqs = [
@@ -127,7 +127,13 @@ const FAQSection = () => {
                           href={BOOKING_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={() => trackEvent("cta_agendar_click", { location: "faq_item", method: "calendar" })}
+                          data-cal-link={CAL_LINK}
+                          data-cal-config={CAL_CONFIG}
+                          onClick={(e) => {
+                            preventDefaultIfCalReady(e);
+                            setBookingContext({ location: "faq_item" });
+                            trackEvent("cta_agendar_click", { location: "faq_item", method: "calendar" });
+                          }}
                           className="inline-flex font-semibold text-navy hover:text-gold transition-colors"
                         >
                           Agendar cita →
@@ -166,7 +172,13 @@ const FAQSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="faq-agendar-cta"
-            onClick={() => trackEvent("cta_agendar_click", { location: "faq_cta", method: "calendar" })}
+            data-cal-link={CAL_LINK}
+            data-cal-config={CAL_CONFIG}
+            onClick={(e) => {
+              preventDefaultIfCalReady(e);
+              setBookingContext({ location: "faq_cta" });
+              trackEvent("cta_agendar_click", { location: "faq_cta", method: "calendar" });
+            }}
             className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition-all duration-300"
           >
             Agendar cita

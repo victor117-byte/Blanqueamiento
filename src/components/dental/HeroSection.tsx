@@ -7,7 +7,7 @@ import paciente3 from "@/assets/paciente-3-sonrisa.webp";
 import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { BOOKING_URL, CAL_CONFIG, CAL_LINK, preventDefaultIfCalReady, setBookingContext } from "@/lib/booking";
 import { ADDRESS_SHORT, GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
 
 const stats = [
@@ -132,7 +132,13 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="hero-cta-agendar"
-                onClick={() => trackEvent("cta_agendar_click", { location: "hero", method: "calendar" })}
+                data-cal-link={CAL_LINK}
+                data-cal-config={CAL_CONFIG}
+                onClick={(e) => {
+                  preventDefaultIfCalReady(e);
+                  setBookingContext({ location: "hero" });
+                  trackEvent("cta_agendar_click", { location: "hero", method: "calendar" });
+                }}
                 className="inline-flex items-center justify-center rounded-2xl border border-white/25 bg-white/8 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-white hover:bg-white/15 hover:border-white/40 transition-all duration-300"
               >
                 Agendar cita
