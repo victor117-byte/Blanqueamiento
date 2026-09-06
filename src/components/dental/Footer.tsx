@@ -1,6 +1,7 @@
 import { Phone, MapPin, MessageCircle, Instagram, Facebook, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "@/lib/analytics";
+import { ADDRESS_FOOTER, MAPS_PLACE_URL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -35,8 +36,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-white/55 leading-relaxed max-w-xs">
-              Más de 20 años transformando sonrisas con tecnología de vanguardia
-              en la Ciudad de México. Tu confianza es nuestra mayor satisfacción.
+              Blanqueamiento por fotoactivación y odontología integral en la Ciudad de México.
             </p>
             {/* Rating */}
             <div className="flex items-center gap-2 mt-5">
@@ -67,7 +67,7 @@ const Footer = () => {
                 <Facebook className="h-4 w-4" />
               </a>
               <a
-                href="https://wa.me/525574441235"
+                href={WHATSAPP_URL}
                 aria-label="WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -104,17 +104,17 @@ const Footer = () => {
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-gold/60" />
                 <a
-                  href="tel:525574441235"
+                  href={PHONE_TEL}
                   onClick={() => trackEvent("phone_click", { location: "footer_contact" })}
                   className="hover:text-white transition-colors duration-200"
                 >
-                  55 7444 1235
+                  {PHONE_DISPLAY}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <MessageCircle className="h-4 w-4 shrink-0 text-gold/60" />
                 <a
-                  href="https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita"
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackEvent("whatsapp_click", { location: "footer_contact" })}
@@ -126,12 +126,12 @@ const Footer = () => {
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 shrink-0 text-gold/60 mt-0.5" />
                 <a
-                  href="https://maps.google.com/?q=BLANQUEAMIENTO+DENTAL+CENTER+CDMX"
+                  href={MAPS_PLACE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-200 leading-relaxed"
                 >
-                  World Trade Center<br />Montecito 38, Nápoles, CDMX
+                  World Trade Center<br />{ADDRESS_FOOTER}
                 </a>
               </div>
               <div className="pt-1">

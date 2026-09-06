@@ -6,6 +6,7 @@ import paciente1Dientes from "@/assets/paciente-1-dientes.webp";
 import paciente2Dientes from "@/assets/paciente-2-dientes.webp";
 import videoAntesDespues from "@/assets/video-antes-despues.mp4";
 import videoPoster from "@/assets/video-antes-despues-poster.webp";
+import { ADDRESS_INSTALACIONES_1, ADDRESS_INSTALACIONES_2, MAPS_PLACE_URL } from "@/lib/site";
 
 const images = [
   { src: equipoTecnologia, alt: "Instrumental de ultrasonido de última generación", label: "Tecnología de vanguardia" },
@@ -47,6 +48,19 @@ const GallerySection = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">
             Instalaciones de primer nivel en el World Trade Center CDMX, equipadas con tecnología de vanguardia.
           </p>
+          <p className="text-foreground font-medium mt-5 leading-relaxed">
+            {ADDRESS_INSTALACIONES_1}
+            <br />
+            {ADDRESS_INSTALACIONES_2}
+          </p>
+          <a
+            href={MAPS_PLACE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex mt-4 text-sm font-semibold text-navy hover:text-gold transition-colors"
+          >
+            Ver en Maps →
+          </a>
         </motion.div>
 
         <motion.div

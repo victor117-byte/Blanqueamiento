@@ -1,19 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Star, Award, Users, ThumbsUp, ArrowDown, BadgeCheck } from "lucide-react";
+import { Star, MapPin, Sparkles, BadgeCheck, ArrowDown } from "lucide-react";
 import paciente5 from "@/assets/paciente-5-sonrisa.webp";
 import paciente1 from "@/assets/paciente-1-sonrisa.webp";
 import paciente3 from "@/assets/paciente-3-sonrisa.webp";
 import paciente6 from "@/assets/paciente-6-sonrisa.webp";
 import paciente4 from "@/assets/paciente-4-sonrisa.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
 
 const stats = [
-  { icon: Award, value: "20+", label: "Años de exp." },
-  { icon: Users, value: "5,000+", label: "Pacientes" },
-  { icon: Star, value: "5.0", label: "Google Rating" },
-  { icon: ThumbsUp, value: "100%", label: "Satisfacción" },
+  { icon: Star, value: GBP_RATING, label: "Calificación en Google" },
+  { icon: MapPin, value: "Nápoles", label: "A pasos del WTC" },
+  { icon: Sparkles, value: "Fotoactivación", label: "Tecnología de blanqueamiento" },
+  { icon: BadgeCheck, value: String(GBP_COUNT), label: "Reseñas en Google" },
 ];
 
 const heroImages = [paciente5, paciente1, paciente3, paciente6, paciente4];
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 ))}
               </div>
               <span className="text-xs font-semibold uppercase tracking-wider text-gold">
-                #1 Blanqueamiento Dental CDMX
+                Blanqueamiento Dental Center · Nápoles
               </span>
             </motion.div>
 
@@ -105,8 +105,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="text-lg text-white/75 mb-10 max-w-lg font-light leading-relaxed"
             >
-              Más de 20 años de experiencia en odontología estética en la Ciudad de México.
-              Tecnología de vanguardia y atención 100% personalizada para ti.
+              Blanqueamiento dental por fotoactivación en Nápoles, Ciudad de
+              México. Tecnología de vanguardia, evaluación previa y atención
+              personalizada.
             </motion.p>
 
             <motion.div
@@ -116,14 +117,14 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
-                href={BOOKING_URL}
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 id="hero-cta-primary"
-                onClick={() => trackEvent("cta_agendar_click", { location: "hero", method: "calendar" })}
+                onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
                 className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
               >
-                Agendar Cita Ahora
+                Escríbenos por WhatsApp
               </a>
               <a
                 href="#servicios"

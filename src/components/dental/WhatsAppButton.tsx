@@ -1,8 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
-
-const WHATSAPP_URL = "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
+import { WHATSAPP_URL } from "@/lib/site";
 
 const WhatsAppButton = () => {
   return (
@@ -18,7 +17,7 @@ const WhatsAppButton = () => {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Agendar cita por WhatsApp"
+        aria-label="Escribir por WhatsApp"
         id="whatsapp-float-btn"
         onClick={() => {
           trackEvent("whatsapp_click", { location: "floating_button" });
@@ -32,7 +31,7 @@ const WhatsAppButton = () => {
         whileTap={{ scale: 0.93 }}
       >
         <MessageCircle className="h-5 w-5 fill-white flex-shrink-0" />
-        <span className="text-sm font-bold hidden sm:inline">Agendar cita</span>
+        <span className="text-sm font-bold hidden sm:inline">Escríbenos por WhatsApp</span>
       </motion.a>
     </div>
   );

@@ -1,18 +1,20 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Shield, Heart, CheckCircle2 } from "lucide-react";
+import { Heart, CheckCircle2, Star, MapPin } from "lucide-react";
 import smileImage from "@/assets/cambio-sonrisa.webp";
+import { ADDRESS_NOSOTROS, GBP_COUNT, GBP_RATING, WHATSAPP_URL } from "@/lib/site";
+import { trackEvent } from "@/lib/analytics";
 
 const stats = [
-  { icon: Award, value: "20+", label: "Años de experiencia" },
-  { icon: Shield, value: "5,000+", label: "Pacientes atendidos" },
-  { icon: Heart, value: "5.0 ⭐", label: "Calificación Google" },
+  { icon: Star, value: GBP_RATING, label: "Calificación Google" },
+  { icon: Heart, value: String(GBP_COUNT), label: "Reseñas en Google" },
+  { icon: MapPin, value: "Nápoles", label: "WTC · Oficina 6B" },
 ];
 
 const highlights = [
   "Tecnología de fotoactivación de última generación",
-  "Tratamientos sin dolor ni sensibilidad",
-  "Resultados visibles desde la primera sesión",
+  "Te explicamos el proceso paso a paso antes de empezar",
+  "Evaluación previa para definir el tratamiento adecuado para ti",
   "Atención personalizada para cada paciente",
 ];
 
@@ -54,15 +56,17 @@ const AboutSection = () => {
               </motion.div>
             </div>
 
-            {/* Card — años de experiencia */}
+            {/* Card — Google proof */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="absolute -bottom-6 -right-4 md:-right-8 rounded-2xl bg-gradient-to-br from-navy to-navy-dark p-5 shadow-elevated"
             >
-              <p className="font-display text-4xl font-bold text-white">20+</p>
-              <p className="text-xs text-white/60 mt-0.5 font-medium uppercase tracking-wider">Años</p>
+              <p className="font-display text-4xl font-bold text-white">{GBP_RATING}</p>
+              <p className="text-xs text-white/60 mt-0.5 font-medium uppercase tracking-wider">
+                Google · {GBP_COUNT} reseñas
+              </p>
               <div className="mt-2 flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <div key={i} className="h-1 w-4 rounded-full bg-gold/60" />
@@ -93,14 +97,12 @@ const AboutSection = () => {
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-5 text-base">
-              Bienvenido a <strong className="text-foreground">Blanqueamiento Dental Center</strong> en Ciudad de México.
-              Nos dedicamos a ofrecerte soluciones efectivas y completamente seguras para lograr
-              una sonrisa radiante que transforme tu confianza.
+              Bienvenido a <strong className="text-foreground">Blanqueamiento Dental Center</strong>, en la Ciudad de
+              México. Nos dedicamos al blanqueamiento dental por fotoactivación: un tratamiento seguro, con
+              evaluación previa, para lograr una sonrisa más brillante que se note en tu confianza.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8 text-base">
-              Ubicados en el <strong className="text-foreground">World Trade Center</strong>, Montecito 38,
-              colonia Nápoles, contamos con instalaciones equipadas con tecnología de vanguardia,
-              en un ambiente acogedor donde tu comodidad es nuestra prioridad.
+              {ADDRESS_NOSOTROS}
             </p>
 
             {/* Highlights */}
@@ -120,6 +122,16 @@ const AboutSection = () => {
                 </motion.li>
               ))}
             </ul>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { location: "nosotros" })}
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-gold to-gold/80 px-6 py-3 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-200 mb-10"
+            >
+              Escríbenos por WhatsApp
+            </a>
 
             {/* Stats row */}
             <div className="grid grid-cols-3 gap-4">

@@ -2,14 +2,14 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Waves, Stethoscope, Gem, CircleDot, Smile, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { WHATSAPP_URL } from "@/lib/site";
 
 const services = [
   {
     icon: Sparkles,
     title: "Blanqueamiento Dental",
     description:
-      "Blanqueamiento por fotoactivación, el método más efectivo con resultados visibles y duraderos. Procedimiento no invasivo y seguro.",
+      "Blanqueamiento por fotoactivación: tratamiento no invasivo, con evaluación previa y resultados visibles y duraderos según tu caso. Es nuestra especialidad.",
     color: "from-amber-500/20 to-yellow-400/10",
     iconColor: "text-amber-500",
     iconBg: "bg-amber-500/10",
@@ -18,7 +18,7 @@ const services = [
     icon: Waves,
     title: "Limpieza con Ultrasonido",
     description:
-      "Vibraciones de alta frecuencia para eliminar placa y sarro, proporcionando una limpieza más profunda que métodos tradicionales.",
+      "Vibraciones de alta frecuencia que retiran placa y sarro, incluso en zonas difíciles, para una limpieza profunda y cómoda.",
     color: "from-blue-500/20 to-cyan-400/10",
     iconColor: "text-blue-500",
     iconBg: "bg-blue-500/10",
@@ -27,7 +27,7 @@ const services = [
     icon: Stethoscope,
     title: "Odontología General",
     description:
-      "Cuidado dental completo: revisiones, restauraciones, endodoncias y tratamientos preventivos para toda la familia.",
+      "Revisiones, restauraciones, endodoncias y tratamientos preventivos para toda la familia, en la misma clínica.",
     color: "from-emerald-500/20 to-teal-400/10",
     iconColor: "text-emerald-500",
     iconBg: "bg-emerald-500/10",
@@ -36,7 +36,7 @@ const services = [
     icon: CircleDot,
     title: "Ortodoncia",
     description:
-      "Corrección dental con brackets tradicionales y sistemas modernos para alinear tu sonrisa de forma efectiva.",
+      "Brackets tradicionales y sistemas modernos para alinear tu sonrisa, con un plan hecho para ti.",
     color: "from-violet-500/20 to-purple-400/10",
     iconColor: "text-violet-500",
     iconBg: "bg-violet-500/10",
@@ -45,7 +45,7 @@ const services = [
     icon: Smile,
     title: "Implantología",
     description:
-      "Implantes dentales de alta calidad que reemplazan piezas perdidas con resultados naturales y duraderos.",
+      "Implantes dentales que reemplazan piezas perdidas con un resultado natural y funcional.",
     color: "from-rose-500/20 to-pink-400/10",
     iconColor: "text-rose-500",
     iconBg: "bg-rose-500/10",
@@ -54,7 +54,7 @@ const services = [
     icon: Gem,
     title: "Estética Dental",
     description:
-      "Carillas dentales y diseño de sonrisa personalizado para armonizar forma, color y alineación de tus dientes.",
+      "Carillas y diseño de sonrisa para armonizar forma, color y alineación de tus dientes.",
     color: "from-fuchsia-500/20 to-pink-400/10",
     iconColor: "text-fuchsia-500",
     iconBg: "bg-fuchsia-500/10",
@@ -98,8 +98,11 @@ const ServicesSection = () => {
             }}>integral</span>
           </h2>
           <p className="text-white/60 max-w-xl mx-auto text-base leading-relaxed">
-            Ofrecemos una amplia gama de tratamientos de alta calidad con atención
-            personalizada y la tecnología más avanzada.
+            Nos especializamos en blanqueamiento dental de alta tecnología,
+            con fotoactivación para un resultado superior. Además, nuestra
+            clínica cuenta con especialistas que ofrecen una amplia gama de
+            tratamientos de alta calidad, con atención personalizada y la
+            tecnología más avanzada.
           </p>
         </motion.div>
 
@@ -126,13 +129,13 @@ const ServicesSection = () => {
                   {service.description}
                 </p>
                 <a
-                  href={BOOKING_URL}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackEvent("cta_agendar_click", { location: "services_card", service: service.title, method: "calendar" })}
+                  onClick={() => trackEvent("whatsapp_click", { location: "services_card", service: service.title })}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold/70 group-hover:text-gold transition-colors duration-300"
                 >
-                  Agendar cita
+                  Escríbenos por WhatsApp
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </div>
@@ -148,14 +151,14 @@ const ServicesSection = () => {
           className="text-center mt-12"
         >
           <a
-            href={BOOKING_URL}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             id="services-cta"
-            onClick={() => trackEvent("cta_agendar_click", { location: "services_bottom", method: "calendar" })}
+            onClick={() => trackEvent("whatsapp_click", { location: "services_bottom" })}
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold to-gold/80 px-8 py-4 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 active:scale-95 transition-all duration-300"
           >
-            Consulta gratis — Agenda hoy
+            Escríbenos por WhatsApp
             <ArrowRight className="h-4 w-4" />
           </a>
         </motion.div>

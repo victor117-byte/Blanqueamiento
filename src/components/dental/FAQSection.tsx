@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { HelpCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { WHATSAPP_URL } from "@/lib/site";
 
 const faqs = [
   {
@@ -32,7 +33,11 @@ const faqs = [
   },
   {
     q: "¿Cuántas sesiones necesito para ver resultados?",
-    a: "Para el blanqueamiento, los resultados son visibles desde la primera sesión. Para otros tratamientos como ortodoncia, el número de sesiones dependerá de la evaluación inicial que realizamos de forma gratuita.",
+    a: "Para el blanqueamiento, los resultados son visibles desde la primera sesión. Para otros tratamientos como ortodoncia, el número de sesiones dependerá de la evaluación inicial que realizamos en tu primera cita.",
+  },
+  {
+    q: "¿Necesito pagar algo para agendar mi cita?",
+    a: "No, agendar tu cita en línea no tiene ningún costo. Eliges tu horario, dejas tus datos y tu cita queda confirmada de inmediato, sin necesidad de pagar por adelantado.",
   },
 ];
 
@@ -129,15 +134,17 @@ const FAQSection = () => {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-12 text-center rounded-3xl bg-gradient-to-br from-navy to-navy-dark p-8 shadow-elevated"
         >
-          <p className="text-white/70 text-sm mb-1">¿Tienes más preguntas?</p>
-          <h3 className="font-display text-2xl font-bold text-white mb-5">Contáctanos directamente</h3>
+          <p className="text-white/70 text-sm mb-1">¿Tienes más preguntas? Contáctanos directamente</p>
+          <h3 className="font-display text-2xl font-bold text-white mb-5">Hablar con un especialista</h3>
           <a
-            href="#contacto"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             id="faq-cta"
-            onClick={() => trackEvent("cta_agendar_click", { location: "faq_cta" })}
+            onClick={() => trackEvent("whatsapp_click", { location: "faq_cta" })}
             className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-7 py-3.5 text-sm font-bold text-white shadow-gold hover:shadow-glow hover:scale-105 transition-all duration-300"
           >
-            Hablar con un especialista
+            Escríbenos por WhatsApp
           </a>
         </motion.div>
       </div>

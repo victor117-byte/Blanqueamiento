@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, Star } from "lucide-react";
 import logoImg from "@/assets/Logo.webp";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -72,21 +72,21 @@ const Navbar = () => {
               ))}
             </div>
             <a
-              href="tel:525574441235"
+              href={PHONE_TEL}
               onClick={() => trackEvent("phone_click", { location: "navbar_desktop" })}
               className={`text-sm font-semibold transition-colors duration-300 ${scrolled ? "hover:text-navy" : "hover:text-white"}`}
             >
-              55 7444 1235
+              {PHONE_DISPLAY}
             </a>
           </div>
           <a
-            href={BOOKING_URL}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("cta_agendar_click", { location: "navbar_desktop", method: "calendar" })}
+            onClick={() => trackEvent("whatsapp_click", { location: "navbar_desktop" })}
             className="ml-2 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-2.5 text-sm font-bold text-white hover:shadow-gold hover:scale-105 active:scale-95 transition-all duration-200"
           >
-            Reservar Cita
+            Escríbenos por WhatsApp
           </a>
         </div>
 
@@ -127,25 +127,25 @@ const Navbar = () => {
               ))}
               <li className="pt-3 mt-2 border-t border-border">
                 <a
-                  href="tel:525574441235"
+                  href={PHONE_TEL}
                   onClick={() => trackEvent("phone_click", { location: "navbar_mobile" })}
                   className="flex items-center gap-2 text-sm font-semibold text-navy px-3 py-2"
                 >
-                  <Phone className="h-4 w-4" /> 55 7444 1235
+                  <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
                 </a>
               </li>
               <li>
                 <a
-                  href={BOOKING_URL}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {
                     setIsOpen(false);
-                    trackEvent("cta_agendar_click", { location: "navbar_mobile", method: "calendar" });
+                    trackEvent("whatsapp_click", { location: "navbar_mobile" });
                   }}
                   className="flex items-center justify-center mt-1 rounded-xl bg-gradient-to-r from-gold to-gold/80 px-5 py-3 text-sm font-bold text-white"
                 >
-                  Reservar Cita
+                  Escríbenos por WhatsApp
                 </a>
               </li>
             </ul>

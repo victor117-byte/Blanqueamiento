@@ -3,45 +3,52 @@ import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
-
-const WHATSAPP_URL =
-  "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
+import {
+  ADDRESS_CONTACT,
+  ADDRESS_FOOTER,
+  GBP_COUNT,
+  GBP_RATING,
+  MAPS_PLACE_URL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  WHATSAPP_URL,
+} from "@/lib/site";
 
 const contactItems = [
+  {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    detail: "Escríbenos por WhatsApp",
+    sub: "Respuesta inmediata",
+    href: WHATSAPP_URL,
+    highlight: true,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+  },
   {
     icon: CalendarClock,
     title: "Agenda en línea",
     detail: "Elige tu horario",
-    sub: "Confirmación al instante",
+    sub: "Sin costo por reservar",
     href: BOOKING_URL,
-    highlight: true,
     color: "text-navy",
     bg: "bg-navy/10",
   },
   {
     icon: Phone,
     title: "Teléfono",
-    detail: "55 7444 1235",
+    detail: PHONE_DISPLAY,
     sub: "Llámanos directamente",
-    href: "tel:525574441235",
+    href: PHONE_TEL,
     color: "text-blue-500",
     bg: "bg-blue-500/10",
-  },
-  {
-    icon: MessageCircle,
-    title: "WhatsApp",
-    detail: "Escríbenos ahora",
-    sub: "Respuesta inmediata",
-    href: WHATSAPP_URL,
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
   },
   {
     icon: MapPin,
     title: "Ubicación",
     detail: "World Trade Center",
-    sub: "Montecito 38, Nápoles, CDMX",
-    href: "https://maps.google.com/?q=BLANQUEAMIENTO+DENTAL+CENTER+CDMX",
+    sub: ADDRESS_CONTACT,
+    href: MAPS_PLACE_URL,
     color: "text-rose-500",
     bg: "bg-rose-500/10",
   },
@@ -88,7 +95,7 @@ const ContactSection = () => {
             </span>
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Estamos listos para atenderte. Contáctanos por el medio que prefieras.
+            Escríbenos por WhatsApp y te ayudamos a elegir horario. También puedes agendar en línea o llamarnos.
           </p>
         </motion.div>
 
@@ -112,7 +119,7 @@ const ContactSection = () => {
                   ))}
                   <span className="text-sm font-bold text-foreground ml-1">5.0</span>
                 </div>
-                <p className="text-xs text-muted-foreground">Calificación perfecta en Google Reviews</p>
+                <p className="text-xs text-muted-foreground">{GBP_RATING} · {GBP_COUNT} reseñas en Google</p>
               </div>
             </div>
 
@@ -142,7 +149,7 @@ const ContactSection = () => {
                   {highlight && (
                     <div className="ml-auto shrink-0">
                       <span className="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full">
-                        Agendar
+                        Escribir
                       </span>
                     </div>
                   )}
@@ -180,12 +187,12 @@ const ContactSection = () => {
 
             {/* CTA principal */}
             <motion.a
-              href={BOOKING_URL}
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              id="contact-calendar-cta"
+              id="contact-whatsapp-cta"
               onClick={() => {
-                trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
+                trackEvent("whatsapp_click", { location: "contact_main_cta" });
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -195,7 +202,7 @@ const ContactSection = () => {
               className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-navy to-navy-dark px-6 py-4 text-sm font-bold text-white shadow-soft hover:shadow-elevated transition-all duration-300 mt-2"
             >
               <CalendarCheck className="h-5 w-5" />
-              Agendar cita en línea
+              Escríbenos por WhatsApp
             </motion.a>
           </motion.div>
 
@@ -218,10 +225,10 @@ const ContactSection = () => {
               <MapPin className="h-4 w-4 text-primary shrink-0" />
               <div>
                 <p className="text-sm font-semibold text-foreground">Blanqueamiento Dental Center</p>
-                <p className="text-xs text-muted-foreground">Montecito 38, Nápoles, CDMX 03810</p>
+                <p className="text-xs text-muted-foreground">{ADDRESS_FOOTER}</p>
               </div>
               <a
-                href="https://maps.google.com/?q=BLANQUEAMIENTO+DENTAL+CENTER+CDMX"
+                href={MAPS_PLACE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-auto text-xs font-bold text-navy hover:text-gold transition-colors shrink-0"
