@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, MapPin, Clock, MessageCircle, CalendarCheck, CalendarClock, Star } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
-import { BOOKING_URL } from "@/lib/booking";
+import { BOOKING_URL, CAL_CONFIG, CAL_LINK, preventDefaultIfCalReady, setBookingContext } from "@/lib/booking";
 
 const WHATSAPP_URL =
   "https://wa.me/525574441235?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita";
@@ -161,10 +161,17 @@ const ContactSection = () => {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      onClick={() => {
+                      {...(href === BOOKING_URL
+                        ? { "data-cal-link": CAL_LINK, "data-cal-config": CAL_CONFIG }
+                        : {})}
+                      onClick={(e) => {
                         if (href.startsWith("tel:")) trackEvent("phone_click", { location: "contact_card" });
                         if (href.startsWith("https://wa.me")) trackEvent("whatsapp_click", { location: "contact_card" });
-                        if (href === BOOKING_URL) trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
+                        if (href === BOOKING_URL) {
+                          preventDefaultIfCalReady(e);
+                          setBookingContext({ location: "contact_card" });
+                          trackEvent("cta_agendar_click", { location: "contact_card", method: "calendar" });
+                        }
                       }}
                       className="block"
                       aria-label={title}
@@ -184,7 +191,11 @@ const ContactSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="contact-calendar-cta"
-              onClick={() => {
+              data-cal-link={CAL_LINK}
+              data-cal-config={CAL_CONFIG}
+              onClick={(e) => {
+                preventDefaultIfCalReady(e);
+                setBookingContext({ location: "contact_main_cta" });
                 trackEvent("cta_agendar_click", { location: "contact_main_cta", method: "calendar" });
               }}
               initial={{ opacity: 0, y: 20 }}
